@@ -22,7 +22,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="64y-A6-jjt">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splashImage" translatesAutoresizingMaskIntoConstraints="NO" id="64y-A6-jjt">
                                 <rect key="frame" x="91" y="237" width="192" height="192"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="192" id="0Qu-jh-Iqf"/>
@@ -43,4 +43,7 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="splashImage" width="256" height="256"/>
+    </resources>
 </document>
