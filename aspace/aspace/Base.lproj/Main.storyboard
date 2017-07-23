@@ -13,7 +13,7 @@
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginViewController" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="aspace" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -22,17 +22,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Let's get parking :)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Whh-T5-Wae">
+                                <rect key="frame" x="88" y="219" width="198" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="3hl-hi-Bm7">
-                                <rect key="frame" x="32" y="273.5" width="311" height="121"/>
+                                <rect key="frame" x="32" y="296" width="311" height="76"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Let's get parking :)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Whh-T5-Wae">
-                                        <rect key="frame" x="56.5" y="0.0" width="198" height="29"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="da1-mn-p0P">
-                                        <rect key="frame" x="0.0" y="45" width="311" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="311" height="30"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="1" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a52-WV-FCL">
                                                 <rect key="frame" x="0.0" y="0.0" width="28" height="30"/>
@@ -40,17 +40,20 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone Number" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wzQ-bc-D2t">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone Number" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="wzQ-bc-D2t">
                                                 <rect key="frame" x="44" y="0.0" width="267" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="phonePad" enablesReturnKeyAutomatically="YES"/>
                                             </textField>
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D5t-9H-ras">
-                                        <rect key="frame" x="132" y="91" width="47" height="30"/>
+                                        <rect key="frame" x="132" y="46" width="47" height="30"/>
                                         <state key="normal" title="Sign In"/>
+                                        <connections>
+                                            <action selector="signInAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="y4h-7B-Lth"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -61,12 +64,19 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="Whh-T5-Wae" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="6mv-eg-9Wf"/>
                             <constraint firstItem="3hl-hi-Bm7" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="16" id="A1i-ZY-BaH"/>
                             <constraint firstAttribute="trailingMargin" secondItem="3hl-hi-Bm7" secondAttribute="trailing" constant="16" id="QwB-Tq-BGy"/>
                             <constraint firstItem="3hl-hi-Bm7" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="cLm-TZ-4FB"/>
+                            <constraint firstItem="Whh-T5-Wae" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-100" id="gj1-Q9-PJ1"/>
                             <constraint firstItem="3hl-hi-Bm7" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="kwb-tZ-wBc"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="countryCodeInput" destination="a52-WV-FCL" id="jiu-CW-7J4"/>
+                        <outlet property="phoneNumberInput" destination="wzQ-bc-D2t" id="D3l-Ga-Fgr"/>
+                        <outlet property="signInButton" destination="D5t-9H-ras" id="49j-fL-nUf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

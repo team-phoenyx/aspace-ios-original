@@ -1,0 +1,4 @@
+target "aspace" do
+	platform :ios, '10.3'
+	pod 'RestKit', '~> 0.27.2'
+end
