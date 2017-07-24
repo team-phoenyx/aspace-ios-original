@@ -14,6 +14,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var countryCodeInput: UITextField!
     @IBOutlet weak var phoneNumberInput: UITextField!
     @IBOutlet weak var signInButton: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     private var aspaceBaseURL = "http://192.241.224.224:3000/api/"
     
@@ -49,28 +50,48 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
 
     func signIn(_ compositePhoneNumber: String) {
+        activityIndicator.startAnimating()
         signInButton.isEnabled = false
         signInButton.setTitle("Resend", for: UIControlState.normal)
         
         Timer.scheduledTimer(timeInterval: 15.0, target: self, selector: #selector(reenableButton), userInfo: nil, repeats: false)
         
-        let alert = UIAlertController(title: "Enter Pin", message: "You will receive a PIN via text shortly", preferredStyle: UIAlertControllerStyle.alert)
-        alert.addTextField(configurationHandler: {(textField: UITextField!) in
-            textField.placeholder = "Enter PIN"
-            textField.keyboardType = .numberPad
-            textField.isSecureTextEntry = true
-            textField.textAlignment = .center
-            textField.delegate = self
-        })
-        alert.addAction(UIAlertAction(title: "Sign In", style: UIAlertActionStyle.default, handler: {action in
-            self.authenticate(pin: alert.textFields![0].text!, compositePhoneNumber: compositePhoneNumber)
-        }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
-        
-        self.present(alert, animated: true, completion: nil)
-        
         //Alamofire request to server
-        //Alamofire.request(aspaceBaseURL + "users/auth/pin").response
+        let getPinParams: Parameters = [
+            "phone" : compositePhoneNumber
+        ]
+        Alamofire.request(aspaceBaseURL + "users/auth/pin", method: .post, parameters: getPinParams, encoding: URLEncoding.httpBody).responseJSON { (response: DataResponse<Any>) in
+            
+            let reqPinResponse = response.map { json -> ResponseCode in
+                let dictionary = json as? [String: Any]
+                return ResponseCode(dictionary!)
+            }
+            
+            if let responseCodeResponse = reqPinResponse.value {
+                let code = responseCodeResponse.responseCode
+                print("Reqeust PIN Response Code: \(code)")
+                
+                if code == "100" {
+                    let alert = UIAlertController(title: "Enter Pin", message: "You will receive a PIN via text shortly", preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addTextField(configurationHandler: {(textField: UITextField!) in
+                        textField.placeholder = "Enter PIN"
+                        textField.keyboardType = .numberPad
+                        textField.isSecureTextEntry = true
+                        textField.textAlignment = .center
+                        textField.delegate = self
+                    })
+                    alert.addAction(UIAlertAction(title: "Sign In", style: UIAlertActionStyle.default, handler: {action in
+                        self.authenticate(pin: alert.textFields![0].text!, compositePhoneNumber: compositePhoneNumber)
+                    }))
+                    alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
+                    
+                    self.present(alert, animated: true, completion: nil)
+                } else {
+                    //TODO something went wrong w/ the PIN request
+                }
+            }
+            self.activityIndicator.stopAnimating()
+        }
         
         print("PIN requested; Phone #: " + compositePhoneNumber)
     }
@@ -80,7 +101,39 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func authenticate(pin: String, compositePhoneNumber: String) {
+        activityIndicator.startAnimating()
         print("Attempt verification; Phone #: " + compositePhoneNumber + "; PIN: " + pin)
+        
+        //Alamofire request to server
+        let verifyPinParams: Parameters = [
+            "phone" : compositePhoneNumber,
+            "pin" : pin
+        ]
+        
+        Alamofire.request(aspaceBaseURL + "users/auth/verify", method: .post, parameters: verifyPinParams, encoding: URLEncoding.httpBody).responseJSON { (response: DataResponse<Any>) in
+            
+            let verPinResponse = response.map { json -> VerifyPinResponse in
+                let dictionary = json as? [String: Any]
+                return VerifyPinResponse(dictionary!)
+            }
+            
+            if let authResponse = verPinResponse.value {
+                let code = authResponse.responseCode
+                print("Verify PIN Response Code: \(code)")
+                
+                if code == "101" {
+                    //TODO NEW USER login successful, move to next view
+                    print("Access Token: \(authResponse.accessToken); User ID: \(authResponse.userID)")
+                } else if code == "102" {
+                    //TODO RETURNING USER login successful, move to next view
+                    print("Access Token: \(authResponse.accessToken); User ID: \(authResponse.userID)")
+                } else {
+                    //TODO something went wrong w/ the authentication
+                }
+            }
+            self.activityIndicator.stopAnimating()
+        }
+
     }
     
     

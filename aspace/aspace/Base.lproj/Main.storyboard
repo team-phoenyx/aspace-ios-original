@@ -28,6 +28,9 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="CYR-Bx-Z5e">
+                                <rect key="frame" x="177" y="423.5" width="20" height="20"/>
+                            </activityIndicatorView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="3hl-hi-Bm7">
                                 <rect key="frame" x="32" y="296" width="311" height="76"/>
                                 <subviews>
@@ -67,12 +70,15 @@
                             <constraint firstItem="Whh-T5-Wae" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="6mv-eg-9Wf"/>
                             <constraint firstItem="3hl-hi-Bm7" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="16" id="A1i-ZY-BaH"/>
                             <constraint firstAttribute="trailingMargin" secondItem="3hl-hi-Bm7" secondAttribute="trailing" constant="16" id="QwB-Tq-BGy"/>
+                            <constraint firstItem="CYR-Bx-Z5e" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="100" id="ZEz-bw-EQ7"/>
                             <constraint firstItem="3hl-hi-Bm7" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="cLm-TZ-4FB"/>
                             <constraint firstItem="Whh-T5-Wae" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-100" id="gj1-Q9-PJ1"/>
+                            <constraint firstItem="CYR-Bx-Z5e" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hoq-eV-GKl"/>
                             <constraint firstItem="3hl-hi-Bm7" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="kwb-tZ-wBc"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="CYR-Bx-Z5e" id="dDY-S1-vfb"/>
                         <outlet property="countryCodeInput" destination="a52-WV-FCL" id="jiu-CW-7J4"/>
                         <outlet property="phoneNumberInput" destination="wzQ-bc-D2t" id="D3l-Ga-Fgr"/>
                         <outlet property="signInButton" destination="D5t-9H-ras" id="49j-fL-nUf"/>
