@@ -10,6 +10,8 @@
 		8E8C567DAA7BD2341A8C6A0D /* Pods_aspace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16B78F3FCB4DA8B82B516D9A /* Pods_aspace.framework */; };
 		E50B935B1F26669F00595101 /* ResponseCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50B935A1F26669F00595101 /* ResponseCode.swift */; };
 		E50B935D1F266FC500595101 /* VerifyPinResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50B935C1F266FC500595101 /* VerifyPinResponse.swift */; };
+		E50B93631F26792D00595101 /* UserCredential.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50B93621F26792D00595101 /* UserCredential.swift */; };
+		E50B93651F26AAD500595101 /* TutorialPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50B93641F26AAD500595101 /* TutorialPageViewController.swift */; };
 		E5B5EF671F24357200802854 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B5EF661F24357200802854 /* AppDelegate.swift */; };
 		E5B5EF691F24357200802854 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B5EF681F24357200802854 /* LoginViewController.swift */; };
 		E5B5EF6C1F24357200802854 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5B5EF6A1F24357200802854 /* Main.storyboard */; };
@@ -23,6 +25,8 @@
 		8F83CBA0D5238EB4A545AF1D /* Pods-aspace.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aspace.debug.xcconfig"; path = "Pods/Target Support Files/Pods-aspace/Pods-aspace.debug.xcconfig"; sourceTree = "<group>"; };
 		E50B935A1F26669F00595101 /* ResponseCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseCode.swift; sourceTree = "<group>"; };
 		E50B935C1F266FC500595101 /* VerifyPinResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyPinResponse.swift; sourceTree = "<group>"; };
+		E50B93621F26792D00595101 /* UserCredential.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCredential.swift; sourceTree = "<group>"; };
+		E50B93641F26AAD500595101 /* TutorialPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialPageViewController.swift; sourceTree = "<group>"; };
 		E5B5EF631F24357200802854 /* aspace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = aspace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5B5EF661F24357200802854 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E5B5EF681F24357200802854 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -62,6 +66,23 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E50B935E1F26786000595101 /* alamofireModels */ = {
+			isa = PBXGroup;
+			children = (
+				E50B935A1F26669F00595101 /* ResponseCode.swift */,
+				E50B935C1F266FC500595101 /* VerifyPinResponse.swift */,
+			);
+			name = alamofireModels;
+			sourceTree = "<group>";
+		};
+		E50B935F1F26788300595101 /* realmModels */ = {
+			isa = PBXGroup;
+			children = (
+				E50B93621F26792D00595101 /* UserCredential.swift */,
+			);
+			name = realmModels;
+			sourceTree = "<group>";
+		};
 		E5B5EF5A1F24357200802854 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +104,8 @@
 		E5B5EF651F24357200802854 /* aspace */ = {
 			isa = PBXGroup;
 			children = (
+				E50B935F1F26788300595101 /* realmModels */,
+				E50B935E1F26786000595101 /* alamofireModels */,
 				E5B5EF661F24357200802854 /* AppDelegate.swift */,
 				E5E3CB7D1F252C94002BBAB0 /* aspace-bridging-header.h */,
 				E5B5EF681F24357200802854 /* LoginViewController.swift */,
@@ -90,8 +113,7 @@
 				E5B5EF6D1F24357200802854 /* Assets.xcassets */,
 				E5B5EF6F1F24357200802854 /* LaunchScreen.storyboard */,
 				E5B5EF721F24357200802854 /* Info.plist */,
-				E50B935A1F26669F00595101 /* ResponseCode.swift */,
-				E50B935C1F266FC500595101 /* VerifyPinResponse.swift */,
+				E50B93641F26AAD500595101 /* TutorialPageViewController.swift */,
 			);
 			path = aspace;
 			sourceTree = "<group>";
@@ -220,7 +242,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E50B93631F26792D00595101 /* UserCredential.swift in Sources */,
 				E5B5EF691F24357200802854 /* LoginViewController.swift in Sources */,
+				E50B93651F26AAD500595101 /* TutorialPageViewController.swift in Sources */,
 				E50B935D1F266FC500595101 /* VerifyPinResponse.swift in Sources */,
 				E5B5EF671F24357200802854 /* AppDelegate.swift in Sources */,
 				E50B935B1F26669F00595101 /* ResponseCode.swift in Sources */,

@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import RealmSwift
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
 
@@ -42,11 +43,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         countryCodeInput.delegate = self
         phoneNumberInput.delegate = self
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     func signIn(_ compositePhoneNumber: String) {
@@ -122,18 +118,57 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 print("Verify PIN Response Code: \(code)")
                 
                 if code == "101" {
-                    //TODO NEW USER login successful, move to next view
+                    self.storeRealmCredentials(userID: authResponse.userID, accessToken: authResponse.accessToken, phoneNumber: compositePhoneNumber)
                     print("Access Token: \(authResponse.accessToken); User ID: \(authResponse.userID)")
+                    
+                    //TODO NEW USER login successful, move to TUTORIAL
+                    //self.performSegue(withIdentifier: "loginToTutorialSegue", sender: nil)
                 } else if code == "102" {
-                    //TODO RETURNING USER login successful, move to next view
+                    self.storeRealmCredentials(userID: authResponse.userID, accessToken: authResponse.accessToken, phoneNumber: compositePhoneNumber)
                     print("Access Token: \(authResponse.accessToken); User ID: \(authResponse.userID)")
+                    
+                    //TODO RETURNING USER login successful, move to MAP
+                    self.performSegue(withIdentifier: "loginToMapSegue", sender: nil)
                 } else {
-                    //TODO something went wrong w/ the authentication
+                    //TODO something went wrong w/ the authentication (make dialog)
                 }
             }
             self.activityIndicator.stopAnimating()
         }
 
+    }
+    
+    func storeRealmCredentials(userID: String, accessToken: String, phoneNumber: String) {
+        let storage = UserDefaults.standard
+        
+        var realmEncryptionKey: Data
+        if (storage.object(forKey: "realm_encryption_key") == nil) {
+            realmEncryptionKey = Data(count: 64)
+            _ = realmEncryptionKey.withUnsafeMutableBytes { bytes in
+                SecRandomCopyBytes(kSecRandomDefault, 64, bytes)
+            }
+            storage.set(realmEncryptionKey, forKey: "realm_encryption_key")
+            print(realmEncryptionKey)
+        } else {
+            realmEncryptionKey = storage.object(forKey: "realm_encryption_key")! as! Data
+            print(realmEncryptionKey)
+        }
+        
+        let config = Realm.Configuration(encryptionKey: realmEncryptionKey)
+        do {
+            let realm = try Realm(configuration: config)
+            
+            let credential = UserCredential()
+            credential.userID = userID
+            credential.accessToken = accessToken
+            credential.phoneNumber = phoneNumber
+            
+            try! realm.write {
+                realm.add(credential)
+            }
+        } catch let error as NSError {
+            fatalError("Error opening realm: \(error)")
+        }
     }
     
     
@@ -144,6 +179,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let compSepByCharInSet = string.components(separatedBy: aSet)
         let numberFiltered = compSepByCharInSet.joined(separator: "")
         return string == numberFiltered
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "loginToMapSegue" {
+        
+        }
     }
 
 }
