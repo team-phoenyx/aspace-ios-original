@@ -9,6 +9,4 @@
 #ifndef aspace_bridging_header_h
 #define aspace_bridging_header_h
 
-#import <RestKit/RestKit.h>
-
 #endif /* aspace_bridging_header_h */

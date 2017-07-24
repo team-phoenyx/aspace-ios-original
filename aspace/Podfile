@@ -1,6 +1,9 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+use_frameworks!
+platform :ios, '10.3'
+
 target "aspace" do
-	use_frameworks!
-	platform :ios, '10.3'
-	pod 'RestKit', '~> 0.27.2'
-	pod 'RealmSwift'
+    pod 'RealmSwift'
+    pod 'Alamofire', '~> 4.4'
 end

@@ -13,7 +13,6 @@
 		E5B5EF6C1F24357200802854 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5B5EF6A1F24357200802854 /* Main.storyboard */; };
 		E5B5EF6E1F24357200802854 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5B5EF6D1F24357200802854 /* Assets.xcassets */; };
 		E5B5EF711F24357200802854 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5B5EF6F1F24357200802854 /* LaunchScreen.storyboard */; };
-		E5E3CB821F2542D7002BBAB0 /* ResponseCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E3CB811F2542D7002BBAB0 /* ResponseCode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,7 +27,6 @@
 		E5B5EF701F24357200802854 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E5B5EF721F24357200802854 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E5E3CB7D1F252C94002BBAB0 /* aspace-bridging-header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "aspace-bridging-header.h"; sourceTree = "<group>"; };
-		E5E3CB811F2542D7002BBAB0 /* ResponseCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseCode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,7 +79,6 @@
 		E5B5EF651F24357200802854 /* aspace */ = {
 			isa = PBXGroup;
 			children = (
-				E5E3CB801F2542AF002BBAB0 /* restkitModels */,
 				E5B5EF661F24357200802854 /* AppDelegate.swift */,
 				E5E3CB7D1F252C94002BBAB0 /* aspace-bridging-header.h */,
 				E5B5EF681F24357200802854 /* LoginViewController.swift */,
@@ -91,14 +88,6 @@
 				E5B5EF721F24357200802854 /* Info.plist */,
 			);
 			path = aspace;
-			sourceTree = "<group>";
-		};
-		E5E3CB801F2542AF002BBAB0 /* restkitModels */ = {
-			isa = PBXGroup;
-			children = (
-				E5E3CB811F2542D7002BBAB0 /* ResponseCode.swift */,
-			);
-			name = restkitModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -227,7 +216,6 @@
 			files = (
 				E5B5EF691F24357200802854 /* LoginViewController.swift in Sources */,
 				E5B5EF671F24357200802854 /* AppDelegate.swift in Sources */,
-				E5E3CB821F2542D7002BBAB0 /* ResponseCode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
