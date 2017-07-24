@@ -7,17 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		989C2B7A21B50A3EDEEC7B57 /* libPods-aspace.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 44C089B17F5197E6EF0883BE /* libPods-aspace.a */; };
+		8E8C567DAA7BD2341A8C6A0D /* Pods_aspace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16B78F3FCB4DA8B82B516D9A /* Pods_aspace.framework */; };
 		E5B5EF671F24357200802854 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B5EF661F24357200802854 /* AppDelegate.swift */; };
 		E5B5EF691F24357200802854 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B5EF681F24357200802854 /* LoginViewController.swift */; };
 		E5B5EF6C1F24357200802854 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5B5EF6A1F24357200802854 /* Main.storyboard */; };
 		E5B5EF6E1F24357200802854 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5B5EF6D1F24357200802854 /* Assets.xcassets */; };
 		E5B5EF711F24357200802854 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5B5EF6F1F24357200802854 /* LaunchScreen.storyboard */; };
+		E5E3CB821F2542D7002BBAB0 /* ResponseCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E3CB811F2542D7002BBAB0 /* ResponseCode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		16B78F3FCB4DA8B82B516D9A /* Pods_aspace.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_aspace.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C21FE5690BF4A0D88CE9236 /* Pods-aspace.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aspace.release.xcconfig"; path = "Pods/Target Support Files/Pods-aspace/Pods-aspace.release.xcconfig"; sourceTree = "<group>"; };
-		44C089B17F5197E6EF0883BE /* libPods-aspace.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-aspace.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F83CBA0D5238EB4A545AF1D /* Pods-aspace.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aspace.debug.xcconfig"; path = "Pods/Target Support Files/Pods-aspace/Pods-aspace.debug.xcconfig"; sourceTree = "<group>"; };
 		E5B5EF631F24357200802854 /* aspace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = aspace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5B5EF661F24357200802854 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -27,6 +28,7 @@
 		E5B5EF701F24357200802854 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E5B5EF721F24357200802854 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E5E3CB7D1F252C94002BBAB0 /* aspace-bridging-header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "aspace-bridging-header.h"; sourceTree = "<group>"; };
+		E5E3CB811F2542D7002BBAB0 /* ResponseCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseCode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -34,7 +36,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				989C2B7A21B50A3EDEEC7B57 /* libPods-aspace.a in Frameworks */,
+				8E8C567DAA7BD2341A8C6A0D /* Pods_aspace.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,7 +55,7 @@
 		B57793A132B0396100F63BA2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				44C089B17F5197E6EF0883BE /* libPods-aspace.a */,
+				16B78F3FCB4DA8B82B516D9A /* Pods_aspace.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -79,6 +81,7 @@
 		E5B5EF651F24357200802854 /* aspace */ = {
 			isa = PBXGroup;
 			children = (
+				E5E3CB801F2542AF002BBAB0 /* restkitModels */,
 				E5B5EF661F24357200802854 /* AppDelegate.swift */,
 				E5E3CB7D1F252C94002BBAB0 /* aspace-bridging-header.h */,
 				E5B5EF681F24357200802854 /* LoginViewController.swift */,
@@ -88,6 +91,14 @@
 				E5B5EF721F24357200802854 /* Info.plist */,
 			);
 			path = aspace;
+			sourceTree = "<group>";
+		};
+		E5E3CB801F2542AF002BBAB0 /* restkitModels */ = {
+			isa = PBXGroup;
+			children = (
+				E5E3CB811F2542D7002BBAB0 /* ResponseCode.swift */,
+			);
+			name = restkitModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -216,6 +227,7 @@
 			files = (
 				E5B5EF691F24357200802854 /* LoginViewController.swift in Sources */,
 				E5B5EF671F24357200802854 /* AppDelegate.swift in Sources */,
+				E5E3CB821F2542D7002BBAB0 /* ResponseCode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

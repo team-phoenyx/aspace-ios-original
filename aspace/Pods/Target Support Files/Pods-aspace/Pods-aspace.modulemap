@@ -1,0 +1,6 @@
+framework module Pods_aspace {
+  umbrella header "Pods-aspace-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,6 +1,11 @@
 PODS:
   - ISO8601DateFormatterValueTransformer (0.6.1):
     - RKValueTransformers (~> 1.1.0)
+  - Realm (2.8.3):
+    - Realm/Headers (= 2.8.3)
+  - Realm/Headers (2.8.3)
+  - RealmSwift (2.8.3):
+    - Realm (= 2.8.3)
   - RestKit (0.27.2):
     - RestKit/Core (= 0.27.2)
   - RestKit/Core (0.27.2):
@@ -24,15 +29,18 @@ PODS:
   - TransitionKit (2.2.1)
 
 DEPENDENCIES:
+  - RealmSwift
   - RestKit (~> 0.27.2)
 
 SPEC CHECKSUMS:
   ISO8601DateFormatterValueTransformer: 52da467d6ec899d6aedda8e48280ac92e8ee97e6
+  Realm: 3601ef091c8c499a31101d8563b991e75546cdce
+  RealmSwift: 8183818515471b01a99abdd2970f8e4fd52b6f4a
   RestKit: 556c913b0640c5bc5a9cb972361504e3ed628a1d
   RKValueTransformers: e5ed67e3811229b616fe01bddeeafe3bb337b1b9
   SOCKit: c7376ac262bea9115b8f749358f762522a47d392
   TransitionKit: 9ceccda4cd0cdc0a05ef85eb235e5a3292c3c250
 
-PODFILE CHECKSUM: 847988920c6ae2e1acbb301d83a1cc3ac4b5cd4d
+PODFILE CHECKSUM: 6de2624b53c88faabceef3115ec963b11ad48d1c
 
 COCOAPODS: 1.2.1
