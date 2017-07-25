@@ -21,11 +21,11 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>We won't tell anyone :)</string>
+	<string>We won&apos;t tell anyone :)</string>
 	<key>NSLocationUsageDescription</key>
-	<string>We won't tell anyone :)</string>
+	<string>We won&apos;t tell anyone :)</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>We won't tell anyone :)</string>
+	<string>We won&apos;t tell anyone :)</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -36,5 +36,7 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>MGLMapboxAccessToken</key>
+	<string>pk.eyJ1IjoicGFyY2FyZSIsImEiOiJjajN2cXA5NmwwMDdwMnJtd3F6MGp4N253In0.xsQBiYMlip8D0SZt1CoaIA</string>
 </dict>
 </plist>

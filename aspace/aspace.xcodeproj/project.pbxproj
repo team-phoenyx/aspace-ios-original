@@ -12,6 +12,7 @@
 		E50B935D1F266FC500595101 /* VerifyPinResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50B935C1F266FC500595101 /* VerifyPinResponse.swift */; };
 		E50B93631F26792D00595101 /* UserCredential.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50B93621F26792D00595101 /* UserCredential.swift */; };
 		E50B93651F26AAD500595101 /* TutorialPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50B93641F26AAD500595101 /* TutorialPageViewController.swift */; };
+		E50B93671F26BD0500595101 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50B93661F26BD0500595101 /* MapViewController.swift */; };
 		E5B5EF671F24357200802854 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B5EF661F24357200802854 /* AppDelegate.swift */; };
 		E5B5EF691F24357200802854 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B5EF681F24357200802854 /* LoginViewController.swift */; };
 		E5B5EF6C1F24357200802854 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5B5EF6A1F24357200802854 /* Main.storyboard */; };
@@ -27,6 +28,7 @@
 		E50B935C1F266FC500595101 /* VerifyPinResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyPinResponse.swift; sourceTree = "<group>"; };
 		E50B93621F26792D00595101 /* UserCredential.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCredential.swift; sourceTree = "<group>"; };
 		E50B93641F26AAD500595101 /* TutorialPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialPageViewController.swift; sourceTree = "<group>"; };
+		E50B93661F26BD0500595101 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		E5B5EF631F24357200802854 /* aspace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = aspace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5B5EF661F24357200802854 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E5B5EF681F24357200802854 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -83,6 +85,16 @@
 			name = realmModels;
 			sourceTree = "<group>";
 		};
+		E50B93681F26C3C300595101 /* viewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				E5B5EF681F24357200802854 /* LoginViewController.swift */,
+				E50B93641F26AAD500595101 /* TutorialPageViewController.swift */,
+				E50B93661F26BD0500595101 /* MapViewController.swift */,
+			);
+			name = viewControllers;
+			sourceTree = "<group>";
+		};
 		E5B5EF5A1F24357200802854 = {
 			isa = PBXGroup;
 			children = (
@@ -104,16 +116,15 @@
 		E5B5EF651F24357200802854 /* aspace */ = {
 			isa = PBXGroup;
 			children = (
+				E50B93681F26C3C300595101 /* viewControllers */,
 				E50B935F1F26788300595101 /* realmModels */,
 				E50B935E1F26786000595101 /* alamofireModels */,
 				E5B5EF661F24357200802854 /* AppDelegate.swift */,
 				E5E3CB7D1F252C94002BBAB0 /* aspace-bridging-header.h */,
-				E5B5EF681F24357200802854 /* LoginViewController.swift */,
 				E5B5EF6A1F24357200802854 /* Main.storyboard */,
 				E5B5EF6D1F24357200802854 /* Assets.xcassets */,
 				E5B5EF6F1F24357200802854 /* LaunchScreen.storyboard */,
 				E5B5EF721F24357200802854 /* Info.plist */,
-				E50B93641F26AAD500595101 /* TutorialPageViewController.swift */,
 			);
 			path = aspace;
 			sourceTree = "<group>";
@@ -248,6 +259,7 @@
 				E50B935D1F266FC500595101 /* VerifyPinResponse.swift in Sources */,
 				E5B5EF671F24357200802854 /* AppDelegate.swift in Sources */,
 				E50B935B1F26669F00595101 /* ResponseCode.swift in Sources */,
+				E50B93671F26BD0500595101 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

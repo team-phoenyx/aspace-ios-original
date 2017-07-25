@@ -9,6 +9,8 @@
 import UIKit
 
 class TutorialPageViewController: UIPageViewController {
+    
+    var realmEncryptionKey: Data!
 
     override func viewDidLoad() {
         super.viewDidLoad()

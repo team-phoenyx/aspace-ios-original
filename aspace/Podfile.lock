@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (4.5.0)
+  - Mapbox-iOS-SDK (3.6.0)
   - Realm (2.8.3):
     - Realm/Headers (= 2.8.3)
   - Realm/Headers (2.8.3)
@@ -8,13 +9,15 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 4.4)
+  - Mapbox-iOS-SDK (~> 3.6)
   - RealmSwift
 
 SPEC CHECKSUMS:
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
+  Mapbox-iOS-SDK: c911b1875a00f12bb74253b763ac483425bd4225
   Realm: 3601ef091c8c499a31101d8563b991e75546cdce
   RealmSwift: 8183818515471b01a99abdd2970f8e4fd52b6f4a
 
-PODFILE CHECKSUM: e0501d31d1c62e556ed31cb594abcc181aa4f5bf
+PODFILE CHECKSUM: 42a732a1366db116c0c56965c1e9c84dd2844ac5
 
 COCOAPODS: 1.2.1

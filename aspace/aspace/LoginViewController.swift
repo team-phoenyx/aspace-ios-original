@@ -18,6 +18,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     private var aspaceBaseURL = "http://192.241.224.224:3000/api/"
+    let storage = UserDefaults.standard
     
     @IBAction func signInAction(_ sender: UIButton) {
         signIn(countryCodeInput.text! + phoneNumberInput.text!)
@@ -122,7 +123,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     print("Access Token: \(authResponse.accessToken); User ID: \(authResponse.userID)")
                     
                     //TODO NEW USER login successful, move to TUTORIAL
-                    //self.performSegue(withIdentifier: "loginToTutorialSegue", sender: nil)
+                    self.performSegue(withIdentifier: "loginToTutorialSegue", sender: nil)
                 } else if code == "102" {
                     self.storeRealmCredentials(userID: authResponse.userID, accessToken: authResponse.accessToken, phoneNumber: compositePhoneNumber)
                     print("Access Token: \(authResponse.accessToken); User ID: \(authResponse.userID)")
@@ -139,8 +140,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func storeRealmCredentials(userID: String, accessToken: String, phoneNumber: String) {
-        let storage = UserDefaults.standard
-        
         var realmEncryptionKey: Data
         if (storage.object(forKey: "realm_encryption_key") == nil) {
             realmEncryptionKey = Data(count: 64)
@@ -183,7 +182,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "loginToMapSegue" {
-        
+            let mapViewController = segue.destination as! MapViewController
+            
+            mapViewController.realmEncryptionKey = storage.object(forKey: "realm_encryption_key") as! Data
+        } else if segue.identifier == "loginToTutorialSegue" {
+            let tutorialViewController = segue.destination as! TutorialPageViewController
+            
+            tutorialViewController.realmEncryptionKey = storage.object(forKey: "realm_encryption_key") as! Data
         }
     }
 
