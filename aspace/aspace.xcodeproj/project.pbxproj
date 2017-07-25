@@ -13,6 +13,11 @@
 		E50B93631F26792D00595101 /* UserCredential.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50B93621F26792D00595101 /* UserCredential.swift */; };
 		E50B93651F26AAD500595101 /* TutorialPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50B93641F26AAD500595101 /* TutorialPageViewController.swift */; };
 		E50B93671F26BD0500595101 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50B93661F26BD0500595101 /* MapViewController.swift */; };
+		E50B936B1F26C4BB00595101 /* TutorialStartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50B936A1F26C4BB00595101 /* TutorialStartViewController.swift */; };
+		E50B936D1F26C4CD00595101 /* TutorialNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50B936C1F26C4CD00595101 /* TutorialNameViewController.swift */; };
+		E50B936F1F26C4FE00595101 /* TutorialCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50B936E1F26C4FE00595101 /* TutorialCarViewController.swift */; };
+		E50B93711F26C50A00595101 /* TutorialLocationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50B93701F26C50A00595101 /* TutorialLocationsViewController.swift */; };
+		E50B93731F26C51600595101 /* TutorialWelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50B93721F26C51600595101 /* TutorialWelcomeViewController.swift */; };
 		E5B5EF671F24357200802854 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B5EF661F24357200802854 /* AppDelegate.swift */; };
 		E5B5EF691F24357200802854 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B5EF681F24357200802854 /* LoginViewController.swift */; };
 		E5B5EF6C1F24357200802854 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5B5EF6A1F24357200802854 /* Main.storyboard */; };
@@ -29,6 +34,11 @@
 		E50B93621F26792D00595101 /* UserCredential.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCredential.swift; sourceTree = "<group>"; };
 		E50B93641F26AAD500595101 /* TutorialPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialPageViewController.swift; sourceTree = "<group>"; };
 		E50B93661F26BD0500595101 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		E50B936A1F26C4BB00595101 /* TutorialStartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialStartViewController.swift; sourceTree = "<group>"; };
+		E50B936C1F26C4CD00595101 /* TutorialNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialNameViewController.swift; sourceTree = "<group>"; };
+		E50B936E1F26C4FE00595101 /* TutorialCarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialCarViewController.swift; sourceTree = "<group>"; };
+		E50B93701F26C50A00595101 /* TutorialLocationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialLocationsViewController.swift; sourceTree = "<group>"; };
+		E50B93721F26C51600595101 /* TutorialWelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialWelcomeViewController.swift; sourceTree = "<group>"; };
 		E5B5EF631F24357200802854 /* aspace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = aspace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5B5EF661F24357200802854 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E5B5EF681F24357200802854 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -88,11 +98,24 @@
 		E50B93681F26C3C300595101 /* viewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				E50B93691F26C49A00595101 /* tutorialViewControllers */,
 				E5B5EF681F24357200802854 /* LoginViewController.swift */,
 				E50B93641F26AAD500595101 /* TutorialPageViewController.swift */,
 				E50B93661F26BD0500595101 /* MapViewController.swift */,
 			);
 			name = viewControllers;
+			sourceTree = "<group>";
+		};
+		E50B93691F26C49A00595101 /* tutorialViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				E50B936A1F26C4BB00595101 /* TutorialStartViewController.swift */,
+				E50B936C1F26C4CD00595101 /* TutorialNameViewController.swift */,
+				E50B936E1F26C4FE00595101 /* TutorialCarViewController.swift */,
+				E50B93701F26C50A00595101 /* TutorialLocationsViewController.swift */,
+				E50B93721F26C51600595101 /* TutorialWelcomeViewController.swift */,
+			);
+			name = tutorialViewControllers;
 			sourceTree = "<group>";
 		};
 		E5B5EF5A1F24357200802854 = {
@@ -254,12 +277,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				E50B93631F26792D00595101 /* UserCredential.swift in Sources */,
+				E50B93731F26C51600595101 /* TutorialWelcomeViewController.swift in Sources */,
 				E5B5EF691F24357200802854 /* LoginViewController.swift in Sources */,
 				E50B93651F26AAD500595101 /* TutorialPageViewController.swift in Sources */,
 				E50B935D1F266FC500595101 /* VerifyPinResponse.swift in Sources */,
 				E5B5EF671F24357200802854 /* AppDelegate.swift in Sources */,
 				E50B935B1F26669F00595101 /* ResponseCode.swift in Sources */,
+				E50B93711F26C50A00595101 /* TutorialLocationsViewController.swift in Sources */,
+				E50B936D1F26C4CD00595101 /* TutorialNameViewController.swift in Sources */,
+				E50B936F1F26C4FE00595101 /* TutorialCarViewController.swift in Sources */,
 				E50B93671F26BD0500595101 /* MapViewController.swift in Sources */,
+				E50B936B1F26C4BB00595101 /* TutorialStartViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

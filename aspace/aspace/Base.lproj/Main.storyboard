@@ -89,10 +89,10 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
-        <!--View Controller-->
+        <!--Tutorial Start View Controller-->
         <scene sceneID="JRZ-JV-McB">
             <objects>
-                <viewController id="pBw-5h-ch1" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TutorialStartController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="pBw-5h-ch1" customClass="TutorialStartViewController" customModule="aspace" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="HkO-ng-Ugf"/>
                         <viewControllerLayoutGuide type="bottom" id="aYi-FE-trl"/>
@@ -100,6 +100,15 @@
                     <view key="view" contentMode="scaleToFill" id="cP9-0A-TIS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Start" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8fU-iT-fN2">
+                                <rect key="frame" x="168" y="323" width="38" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
@@ -107,10 +116,10 @@
             </objects>
             <point key="canvasLocation" x="-577" y="1207"/>
         </scene>
-        <!--View Controller-->
+        <!--Tutorial Name View Controller-->
         <scene sceneID="OSY-We-NFu">
             <objects>
-                <viewController id="AMO-zS-0Ob" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TutorialNameController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="AMO-zS-0Ob" customClass="TutorialNameViewController" customModule="aspace" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="uKI-x2-LHF"/>
                         <viewControllerLayoutGuide type="bottom" id="CqA-GP-3xc"/>
@@ -118,6 +127,15 @@
                     <view key="view" contentMode="scaleToFill" id="SSp-nx-gME">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wSd-qD-1CS">
+                                <rect key="frame" x="165" y="323" width="45" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
@@ -125,10 +143,10 @@
             </objects>
             <point key="canvasLocation" x="231" y="1207"/>
         </scene>
-        <!--View Controller-->
+        <!--Tutorial Car View Controller-->
         <scene sceneID="lu2-9M-uO1">
             <objects>
-                <viewController id="vTZ-tv-UG3" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TutorialCarController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vTZ-tv-UG3" customClass="TutorialCarViewController" customModule="aspace" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hv3-BY-ewo"/>
                         <viewControllerLayoutGuide type="bottom" id="L9v-sQ-N2A"/>
@@ -136,6 +154,15 @@
                     <view key="view" contentMode="scaleToFill" id="UVd-Ki-VeW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Car" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ggH-iL-zp7">
+                                <rect key="frame" x="174" y="323" width="27" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
@@ -143,10 +170,10 @@
             </objects>
             <point key="canvasLocation" x="1025" y="1208"/>
         </scene>
-        <!--View Controller-->
+        <!--Tutorial Locations View Controller-->
         <scene sceneID="QQL-jC-bVi">
             <objects>
-                <viewController id="IAL-r2-xCc" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TutorialLocationsController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="IAL-r2-xCc" customClass="TutorialLocationsViewController" customModule="aspace" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="gGe-Q9-yRT"/>
                         <viewControllerLayoutGuide type="bottom" id="q4y-AS-Gy3"/>
@@ -154,6 +181,15 @@
                     <view key="view" contentMode="scaleToFill" id="HBr-ac-61U">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Locations" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Dm-Ul-gL7">
+                                <rect key="frame" x="150" y="323" width="74" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
@@ -161,10 +197,10 @@
             </objects>
             <point key="canvasLocation" x="1830" y="1208"/>
         </scene>
-        <!--View Controller-->
+        <!--Tutorial Welcome View Controller-->
         <scene sceneID="ODT-CC-TiE">
             <objects>
-                <viewController id="dot-xk-Mnb" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TutorialWelcomeController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dot-xk-Mnb" customClass="TutorialWelcomeViewController" customModule="aspace" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8yf-af-Aiv"/>
                         <viewControllerLayoutGuide type="bottom" id="qQg-6S-ABl"/>
@@ -172,6 +208,15 @@
                     <view key="view" contentMode="scaleToFill" id="hui-LD-nFK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Welcome" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JWY-Sa-TOd">
+                                <rect key="frame" x="152" y="323" width="71" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
@@ -182,7 +227,7 @@
         <!--Tutorial Page View Controller-->
         <scene sceneID="fHV-Su-TFP">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="3Ix-HB-0Yz" customClass="TutorialPageViewController" customModule="aspace" sceneMemberID="viewController"/>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="3Ix-HB-0Yz" customClass="TutorialPageViewController" customModule="aspace" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ODn-JT-WPX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1025" y="470"/>

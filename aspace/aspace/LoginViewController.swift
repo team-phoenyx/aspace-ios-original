@@ -84,7 +84,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     
                     self.present(alert, animated: true, completion: nil)
                 } else {
-                    //TODO something went wrong w/ the PIN request
+                    let alert = UIAlertController(title: "Request Failed", message: "Something went wrong with the request. Please try again shortly", preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.cancel, handler: nil))
+                    
+                    self.present(alert, animated: true, completion: nil)
                 }
             }
             self.activityIndicator.stopAnimating()
@@ -129,9 +132,22 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     print("Access Token: \(authResponse.accessToken); User ID: \(authResponse.userID)")
                     
                     //TODO RETURNING USER login successful, move to MAP
-                    self.performSegue(withIdentifier: "loginToMapSegue", sender: nil)
+                    self.performSegue(withIdentifier: "loginToTutorialSegue", sender: nil)
+                } else if code == "2" {
+                    let alert = UIAlertController(title: "Login Failed", message: "The PIN you entered is incorrect. Please try again shortly", preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.cancel, handler: nil))
+                    
+                    self.present(alert, animated: true, completion: nil)
+                } else if code == "3" {
+                    let alert = UIAlertController(title: "Login Failed", message: "The PIN you received has expired. Please try again shortly", preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.cancel, handler: nil))
+                    
+                    self.present(alert, animated: true, completion: nil)
                 } else {
-                    //TODO something went wrong w/ the authentication (make dialog)
+                    let alert = UIAlertController(title: "Login Failed", message: "Something went wrong during authentication. Please try again shortly", preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.cancel, handler: nil))
+                    
+                    self.present(alert, animated: true, completion: nil)
                 }
             }
             self.activityIndicator.stopAnimating()
