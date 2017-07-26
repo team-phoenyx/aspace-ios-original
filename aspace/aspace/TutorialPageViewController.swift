@@ -25,9 +25,9 @@ class TutorialPageViewController: UIPageViewController, UIPageViewControllerData
         self.setViewControllers(viewControllers as? [UIViewController], direction: UIPageViewControllerNavigationDirection.forward, animated: false, completion: nil)
         
         let appearance = UIPageControl.appearance()
-        appearance.pageIndicatorTintColor = UIColor.white
-        appearance.currentPageIndicatorTintColor = UIColor.init(rgb: 0x0288D1)
-        appearance.backgroundColor = UIColor.darkGray
+        appearance.pageIndicatorTintColor = UIColor.darkGray
+        appearance.currentPageIndicatorTintColor = UIColor.white
+        appearance.backgroundColor = UIColor.init(rgb: 0x40C4FF)
     }
     
     func viewControllerAtIndex(index: Int) -> UIViewController! {
