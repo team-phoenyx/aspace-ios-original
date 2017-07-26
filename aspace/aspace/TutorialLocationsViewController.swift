@@ -9,6 +9,11 @@
 import UIKit
 
 class TutorialLocationsViewController: UIViewController {
+    
+    var homeLocID: String!
+    var workLocID: String!
+    var homeAddress: String!
+    var workAddress: String!
 
     override func viewDidLoad() {
         super.viewDidLoad()
