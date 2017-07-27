@@ -23,6 +23,8 @@
 		E5B5EF6C1F24357200802854 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5B5EF6A1F24357200802854 /* Main.storyboard */; };
 		E5B5EF6E1F24357200802854 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5B5EF6D1F24357200802854 /* Assets.xcassets */; };
 		E5B5EF711F24357200802854 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5B5EF6F1F24357200802854 /* LaunchScreen.storyboard */; };
+		E5B6A1491F291ED900250F4E /* GeocoderResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B6A1481F291ED900250F4E /* GeocoderResponse.swift */; };
+		E5B6A14B1F29236600250F4E /* LocationSuggestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B6A14A1F29236600250F4E /* LocationSuggestion.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,8 @@
 		E5B5EF6D1F24357200802854 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E5B5EF701F24357200802854 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E5B5EF721F24357200802854 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E5B6A1481F291ED900250F4E /* GeocoderResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeocoderResponse.swift; sourceTree = "<group>"; };
+		E5B6A14A1F29236600250F4E /* LocationSuggestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSuggestion.swift; sourceTree = "<group>"; };
 		E5E3CB7D1F252C94002BBAB0 /* aspace-bridging-header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "aspace-bridging-header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -83,6 +87,8 @@
 			children = (
 				E50B935A1F26669F00595101 /* ResponseCode.swift */,
 				E50B935C1F266FC500595101 /* VerifyPinResponse.swift */,
+				E5B6A1481F291ED900250F4E /* GeocoderResponse.swift */,
+				E5B6A14A1F29236600250F4E /* LocationSuggestion.swift */,
 			);
 			name = alamofireModels;
 			sourceTree = "<group>";
@@ -284,9 +290,11 @@
 				E5B5EF671F24357200802854 /* AppDelegate.swift in Sources */,
 				E50B935B1F26669F00595101 /* ResponseCode.swift in Sources */,
 				E50B93711F26C50A00595101 /* TutorialLocationsViewController.swift in Sources */,
+				E5B6A1491F291ED900250F4E /* GeocoderResponse.swift in Sources */,
 				E50B936D1F26C4CD00595101 /* TutorialNameViewController.swift in Sources */,
 				E50B936F1F26C4FE00595101 /* TutorialCarViewController.swift in Sources */,
 				E50B93671F26BD0500595101 /* MapViewController.swift in Sources */,
+				E5B6A14B1F29236600250F4E /* LocationSuggestion.swift in Sources */,
 				E50B936B1F26C4BB00595101 /* TutorialStartViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

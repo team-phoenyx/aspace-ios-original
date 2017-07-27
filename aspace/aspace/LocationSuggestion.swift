@@ -7,3 +7,15 @@
 //
 
 import Foundation
+
+class LocationSuggestion {
+    var id: String
+    var name: String
+    var address: String
+    
+    init(id: String, name: String, address: String) {
+        self.id = id
+        self.name = name
+        self.address = address
+    }
+}
