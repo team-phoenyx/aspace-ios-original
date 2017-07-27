@@ -326,6 +326,10 @@
                             <constraint firstAttribute="trailingMargin" secondItem="75e-hL-6zP" secondAttribute="trailing" constant="32" id="x5O-A5-UaH"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="homeAddressTextField" destination="hpl-Og-udb" id="srO-SM-XEH"/>
+                        <outlet property="workAddressTextField" destination="75e-hL-6zP" id="BUp-eb-r0w"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2OP-0q-Rh9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
