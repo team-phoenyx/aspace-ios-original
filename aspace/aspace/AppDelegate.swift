@@ -45,6 +45,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 //login screen
                 self.window?.rootViewController = loginViewController
                 self.window?.makeKeyAndVisible()
+                try! realm.write {
+                    realm.delete(realm.objects(UserCredential.self))
+                }
                 
                 return true
             }
@@ -76,6 +79,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         //login screen
                         self.window?.rootViewController = loginViewController
                         self.window?.makeKeyAndVisible()
+                        try! realm.write {
+                            realm.delete(realm.objects(UserCredential.self))
+                        }
                         
                         return
                     }

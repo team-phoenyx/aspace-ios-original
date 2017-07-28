@@ -179,6 +179,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             credential.phoneNumber = phoneNumber
             
             try! realm.write {
+                realm.delete(realm.objects(UserCredential.self))
                 realm.add(credential)
             }
         } catch let error as NSError {
