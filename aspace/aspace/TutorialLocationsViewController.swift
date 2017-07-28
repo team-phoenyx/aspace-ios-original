@@ -19,11 +19,6 @@ class TutorialLocationsViewController: UIViewController, CLLocationManagerDelega
     let geocoderBaseURL: String = "https://api.mapbox.com/"
     
     var currentSuggestions = [LocationSuggestion]()
-    
-    var homeLocID: String!
-    var workLocID: String!
-    var homeAddress: String!
-    var workAddress: String!
 
     @IBOutlet weak var homeAddressTextField: SearchTextField!
     @IBOutlet weak var workAddressTextField: SearchTextField!
@@ -46,16 +41,19 @@ class TutorialLocationsViewController: UIViewController, CLLocationManagerDelega
         homeAddressTextField.inlineMode = true
         workAddressTextField.inlineMode = true
         
+        let parentViewController = self.parent as! TutorialPageViewController
+        
+        homeAddressTextField.text = parentViewController.homeName ?? ""
+        workAddressTextField.text = parentViewController.workName ?? ""
+        
         homeAddressTextField.itemSelectionHandler = { item, itemPosition in
             self.homeAddressTextField.text = item.title
-            self.homeAddress = item.title
-            self.homeLocID = self.currentSuggestions[itemPosition].id
+            parentViewController.setHomeLocation(homeAddress: item.subtitle ?? item.title, homeLocID: self.currentSuggestions[itemPosition].id, homeName: item.title)
         }
         
         workAddressTextField.itemSelectionHandler = { item, itemPosition in
             self.workAddressTextField.text = item.title
-            self.workAddress = item.title
-            self.workLocID = self.currentSuggestions[itemPosition].id
+            parentViewController.setWorkLocation(workAddress: item.subtitle ?? item.title, workLocID: self.currentSuggestions[itemPosition].id, workName: item.title)
         }
     }
     

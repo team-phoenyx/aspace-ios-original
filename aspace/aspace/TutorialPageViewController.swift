@@ -7,11 +7,22 @@
 //
 
 import UIKit
+import RealmSwift
 
 class TutorialPageViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
     var realmEncryptionKey: Data!
     var identifiers: NSArray = ["TutorialStartController", "TutorialNameController", "TutorialCarController", "TutorialLocationsController", "TutorialWelcomeController"]
+    
+    var name: String?
+    var homeAddress: String?
+    var homeLocID: String?
+    var homeName: String?
+    var workAddress: String?
+    var workLocID: String?
+    var workName: String?
+    
+    var userCredential: UserCredential!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +30,17 @@ class TutorialPageViewController: UIPageViewController, UIPageViewControllerData
         // Do any additional setup after loading the view.
         self.dataSource = self
         self.delegate = self
+        
+        let config = Realm.Configuration(encryptionKey: realmEncryptionKey)
+        do {
+            let realm = try Realm(configuration: config)
+            
+            let credentials = realm.objects(UserCredential.self)
+            self.userCredential = credentials.first
+        } catch let error as NSError {
+            fatalError("Error opening realm: \(error)")
+        }
+
         
         let startingViewController = self.viewControllerAtIndex(index: 0)
         let viewControllers: NSArray = [startingViewController!]
@@ -96,7 +118,31 @@ class TutorialPageViewController: UIPageViewController, UIPageViewControllerData
     */
     
     
-
+    func getProfileParameters() -> [String] {
+        let array = [name ?? "", homeAddress ?? "", workAddress ?? "", homeLocID ?? "", workLocID ?? ""]
+        return array
+    }
+    
+    func setName(name: String) {
+        self.name = name
+    }
+    
+    func setHomeLocation(homeAddress: String, homeLocID: String, homeName: String) {
+        self.homeAddress = homeAddress
+        self.homeLocID = homeLocID
+        self.homeName = homeName
+    }
+    
+    func setWorkLocation(workAddress: String, workLocID: String, workName: String) {
+        self.workAddress = workAddress
+        self.workLocID = workLocID
+        self.workName = workName
+    }
+    
+    func getUserIdentifiers() -> [String] {
+        let array = [self.userCredential.userID, self.userCredential.accessToken, self.userCredential.phoneNumber]
+        return array 
+    }
 }
 
 extension UIColor {

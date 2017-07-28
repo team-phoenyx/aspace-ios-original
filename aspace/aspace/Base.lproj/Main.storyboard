@@ -172,6 +172,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                <connections>
+                                    <action selector="nameTextChanged:" destination="AMO-zS-0Ob" eventType="editingChanged" id="DzS-fF-ZGJ"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="optional" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gYQ-I9-6dm">
                                 <rect key="frame" x="157" y="36" width="61.5" height="20.5"/>
@@ -192,6 +195,9 @@
                             <constraint firstItem="gYQ-I9-6dm" firstAttribute="centerX" secondItem="SSp-nx-gME" secondAttribute="centerX" id="qA4-Cd-VeI"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="nameTextField" destination="4Gv-DV-D1l" id="AZM-ix-Qyb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mvn-jF-jkt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -397,7 +403,7 @@
         <!--Map View Controller-->
         <scene sceneID="NWt-Jw-6jG">
             <objects>
-                <viewController id="fKU-vt-jik" customClass="MapViewController" customModule="aspace" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MapViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="fKU-vt-jik" customClass="MapViewController" customModule="aspace" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="EYF-o3-OoG"/>
                         <viewControllerLayoutGuide type="bottom" id="KSS-FR-g3a"/>

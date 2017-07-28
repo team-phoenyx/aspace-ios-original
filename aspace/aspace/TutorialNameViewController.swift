@@ -10,10 +10,21 @@ import UIKit
 
 class TutorialNameViewController: UIViewController {
 
+    
+    @IBOutlet weak var nameTextField: UITextField!
+    
+    @IBAction func nameTextChanged(_ sender: UITextField) {
+        let parentViewController = parent as! TutorialPageViewController
+        
+        parentViewController.setName(name: sender.text ?? "")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        let parentViewController = parent as! TutorialPageViewController
+        nameTextField.text = parentViewController.name ?? ""
     }
 
     override func didReceiveMemoryWarning() {

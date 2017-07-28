@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RealmSwift
+import Alamofire
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,14 +18,74 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let aspaceBaseURL = "http://192.241.224.224:3000/api/"
         self.window = UIWindow(frame: UIScreen.main.bounds)
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let loginViewController: LoginViewController = mainStoryboard.instantiateViewController(withIdentifier: "LoginController") as! LoginViewController
+        let mapViewController: MapViewController = mainStoryboard.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
         
-        self.window?.rootViewController = loginViewController
+        let storage = UserDefaults.standard
         
-        self.window?.makeKeyAndVisible()
+        guard let realmEncryptionKey = storage.object(forKey: "realm_encryption_key") as? Data else {
+            //login screen
+            self.window?.rootViewController = loginViewController
+            self.window?.makeKeyAndVisible()
+            
+            return true
+        }
         
+        print(realmEncryptionKey)
+        
+        let config = Realm.Configuration(encryptionKey: realmEncryptionKey)
+        do {
+            let realm = try Realm(configuration: config)
+            
+            guard let credentials = realm.objects(UserCredential.self).first else {
+                //login screen
+                self.window?.rootViewController = loginViewController
+                self.window?.makeKeyAndVisible()
+                
+                return true
+            }
+            
+            let reauthParams: Parameters = [
+                "user_id": credentials.userID,
+                "access_token": credentials.accessToken,
+                "phone": credentials.phoneNumber
+            ]
+            
+            //Alamofire REAUTH
+            Alamofire.request(aspaceBaseURL + "users/auth/reauth", method: .post, parameters: reauthParams, encoding: URLEncoding.httpBody).responseJSON { (response: DataResponse<Any>) in
+                
+                let reauthRawResponse = response.map { json -> ResponseCode in
+                    let dictionary = json as? [String: Any]
+                    return ResponseCode(dictionary!)
+                }
+                
+                if let reauthResponse = reauthRawResponse.value {
+                    let code = reauthResponse.responseCode
+                    print("Reauthenticate Response Code: \(code)")
+                    
+                    if code == "101" || code == "102" {
+                        self.window?.rootViewController = mapViewController
+                        self.window?.makeKeyAndVisible()
+                        
+                        return
+                    } else {
+                        //login screen
+                        self.window?.rootViewController = loginViewController
+                        self.window?.makeKeyAndVisible()
+                        
+                        return
+                    }
+                }
+            }
+
+            
+        } catch let error as NSError {
+            fatalError("Error opening realm: \(error)")
+        }
         return true
     }
 
