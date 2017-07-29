@@ -17,7 +17,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    private var aspaceBaseURL = "http://192.241.224.224:3000/api/"
+    private var aspaceBaseURL = (UIApplication.shared.delegate as! AppDelegate).aspaceBaseURL
     let storage = UserDefaults.standard
     
     @IBAction func signInAction(_ sender: UIButton) {
@@ -132,7 +132,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     print("Access Token: \(authResponse.accessToken); User ID: \(authResponse.userID)")
                     
                     //TODO RETURNING USER login successful, move to MAP
-                    self.performSegue(withIdentifier: "loginToTutorialSegue", sender: nil)
+                    self.performSegue(withIdentifier: "loginToMapSegue", sender: nil)
                 } else if code == "2" {
                     let alert = UIAlertController(title: "Login Failed", message: "The PIN you entered is incorrect. Please try again shortly", preferredStyle: UIAlertControllerStyle.alert)
                     alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.cancel, handler: nil))

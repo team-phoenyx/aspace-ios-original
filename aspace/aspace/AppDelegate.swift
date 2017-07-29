@@ -14,12 +14,11 @@ import Alamofire
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    let aspaceBaseURL = "http://165.227.7.211:3000/api/"
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        let aspaceBaseURL = "http://192.241.224.224:3000/api/"
         self.window = UIWindow(frame: UIScreen.main.bounds)
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let loginViewController: LoginViewController = mainStoryboard.instantiateViewController(withIdentifier: "LoginController") as! LoginViewController

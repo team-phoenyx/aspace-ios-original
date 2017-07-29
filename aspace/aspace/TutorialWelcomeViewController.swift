@@ -12,7 +12,8 @@ import Alamofire
 class TutorialWelcomeViewController: UIViewController {
 
     let storage = UserDefaults.standard
-    private var aspaceBaseURL = "http://192.241.224.224:3000/api/"
+    
+    private var aspaceBaseURL = (UIApplication.shared.delegate as! AppDelegate).aspaceBaseURL
     
     @IBAction func startButtonClick(_ sender: UIButton) {
         
