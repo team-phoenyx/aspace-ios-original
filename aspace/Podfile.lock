@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (4.5.0)
+  - LGButton (1.0.2)
   - Mapbox-iOS-SDK (3.6.0)
   - Realm (2.8.3):
     - Realm/Headers (= 2.8.3)
@@ -10,17 +11,19 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 4.4)
+  - LGButton
   - Mapbox-iOS-SDK (~> 3.6)
   - RealmSwift
   - SearchTextField
 
 SPEC CHECKSUMS:
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
+  LGButton: 44ce49b10deb84a2a8bd6fe5c763a65ff78a3180
   Mapbox-iOS-SDK: c911b1875a00f12bb74253b763ac483425bd4225
   Realm: 3601ef091c8c499a31101d8563b991e75546cdce
   RealmSwift: 8183818515471b01a99abdd2970f8e4fd52b6f4a
   SearchTextField: fb85b5c0650e674d10042f807d350f2d59c70b0d
 
-PODFILE CHECKSUM: 17169043899c714c7341e343e89c12f68d0c9237
+PODFILE CHECKSUM: 43c11873c7602a4af3151c7f94d94e524af2331d
 
 COCOAPODS: 1.2.1

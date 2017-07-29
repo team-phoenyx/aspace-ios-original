@@ -8,4 +8,5 @@ target "aspace" do
     pod 'Alamofire', '~> 4.4'
     pod 'Mapbox-iOS-SDK', '~> 3.6'
     pod 'SearchTextField'
+    pod 'LGButton'
 end

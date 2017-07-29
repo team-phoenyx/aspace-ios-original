@@ -429,6 +429,13 @@
                                         <items>
                                             <navigationItem id="5i4-3F-epY">
                                                 <nil key="title"/>
+                                                <textField key="titleView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search..." textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" id="ZOl-Lo-an6" customClass="SearchTextField" customModule="SearchTextField">
+                                                    <rect key="frame" x="112.5" y="27" width="150" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
                                             </navigationItem>
                                         </items>
                                     </navigationBar>
@@ -439,6 +446,9 @@
                                     <constraint firstAttribute="trailing" secondItem="S7l-XW-7L9" secondAttribute="trailing" id="RSH-4J-IdV"/>
                                     <constraint firstItem="S7l-XW-7L9" firstAttribute="top" secondItem="o56-93-65h" secondAttribute="top" id="yCi-hT-rkQ"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="showsUserLocation" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -450,8 +460,10 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="mapView" destination="o56-93-65h" id="iyb-oI-Qh1"/>
                         <outlet property="navigationBar" destination="S7l-XW-7L9" id="kEK-Yv-VeA"/>
                         <outlet property="searchDisplayController" destination="Nid-qH-TVO" id="zgg-sP-eqU"/>
+                        <outlet property="searchTextField" destination="ZOl-Lo-an6" id="NGp-c9-Zne"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Vf-7L-dJV" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -24,6 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let loginViewController: LoginViewController = mainStoryboard.instantiateViewController(withIdentifier: "LoginController") as! LoginViewController
         let mapViewController: MapViewController = mainStoryboard.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
         
+        self.window?.rootViewController = mapViewController
+        self.window?.makeKeyAndVisible()
+        /*
         let storage = UserDefaults.standard
         
         guard let realmEncryptionKey = storage.object(forKey: "realm_encryption_key") as? Data else {
@@ -91,6 +94,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } catch let error as NSError {
             fatalError("Error opening realm: \(error)")
         }
+        */
         return true
     }
 
