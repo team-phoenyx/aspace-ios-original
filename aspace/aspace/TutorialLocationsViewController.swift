@@ -34,12 +34,18 @@ class TutorialLocationsViewController: UIViewController, CLLocationManagerDelega
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.startUpdatingLocation()
         }
-
-        homeAddressTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-        workAddressTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         
-        homeAddressTextField.inlineMode = true
-        workAddressTextField.inlineMode = true
+        homeAddressTextField.theme.font = UIFont.systemFont(ofSize: 14)
+        workAddressTextField.theme.font = UIFont.systemFont(ofSize: 14)
+        
+        homeAddressTextField.highlightAttributes = [NSFontAttributeName:UIFont.boldSystemFont(ofSize: 14)]
+        workAddressTextField.highlightAttributes = [NSFontAttributeName:UIFont.boldSystemFont(ofSize: 14)]
+        
+        homeAddressTextField.theme.cellHeight = 40
+        workAddressTextField.theme.cellHeight = 40
+        
+        homeAddressTextField.theme.bgColor = UIColor (red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        workAddressTextField.theme.bgColor = UIColor (red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         
         let parentViewController = self.parent as! TutorialPageViewController
         
@@ -55,25 +61,49 @@ class TutorialLocationsViewController: UIViewController, CLLocationManagerDelega
             self.workAddressTextField.text = item.title
             parentViewController.setWorkLocation(workAddress: item.subtitle ?? item.title, workLocID: self.currentSuggestions[itemPosition].id, workName: item.title)
         }
+        
+        homeAddressTextField.userStoppedTypingHandler = {
+            if let query = self.homeAddressTextField.text {
+                if query.characters.count > 2 {
+                    self.homeAddressTextField.showLoadingIndicator()
+                    
+                    self.getSuggestionsBackground(query) { suggestions in
+                        self.homeAddressTextField.filterItems(suggestions)
+                        
+                        self.homeAddressTextField.stopLoadingIndicator()
+                    }
+                }
+            }
+        }
+        
+        workAddressTextField.userStoppedTypingHandler = {
+            if let query = self.workAddressTextField.text {
+                if query.characters.count > 2 {
+                    self.workAddressTextField.showLoadingIndicator()
+                    
+                    self.getSuggestionsBackground(query) { suggestions in
+                        self.workAddressTextField.filterItems(suggestions)
+                        
+                        self.workAddressTextField.stopLoadingIndicator()
+                    }
+                }
+            }
+        }
     }
     
-    func textFieldDidChange(_ textField: SearchTextField) {
-        var newText = textField.text!
-        
-        if (newText == "") { return }
-        
+    func getSuggestionsBackground(_ query: String, callback: @escaping ((_ results: [SearchTextFieldItem]) -> Void)) {
+        var newText = query
         newText = newText.replacingOccurrences(of: " ", with: "%20")
-        let proximityString = "\(currentLocation.longitude),\(currentLocation.latitude)"
+        let proximityString = "\(self.currentLocation.longitude),\(self.currentLocation.latitude)"
         let accessToken = "pk.eyJ1IjoicGFyY2FyZSIsImEiOiJjajVpdHpsN2wxa3dxMzNwZ3dsNzFsNjAxIn0.xROQiNWCYJI-3EvHd0-NzQ"
         
-        print("Request URL: \(geocoderBaseURL)geocoding/v5/mapbox.places/\(newText).json?proximity=\(proximityString)&access_token=\(accessToken)")
-        Alamofire.request(geocoderBaseURL + "geocoding/v5/mapbox.places/\(newText).json?proximity=\(proximityString)&access_token=\(accessToken)", method: .get).responseJSON { (response: DataResponse<Any>) in
+        print("Request URL: \(self.geocoderBaseURL)geocoding/v5/mapbox.places/\(newText).json?proximity=\(proximityString)&access_token=\(accessToken)")
+        Alamofire.request(self.geocoderBaseURL + "geocoding/v5/mapbox.places/\(newText).json?proximity=\(proximityString)&access_token=\(accessToken)", method: .get).responseJSON { (response: DataResponse<Any>) in
             
             let geocodeResponse = response.map { json -> GeocoderResponse in
                 let dictionary = json as? [String: Any]
                 return GeocoderResponse(dictionary!)
             }
-            
             
             self.currentSuggestions.removeAll()
             self.currentSuggestions = (geocodeResponse.value?.locationSuggestions)!
@@ -84,10 +114,23 @@ class TutorialLocationsViewController: UIViewController, CLLocationManagerDelega
                 parsedSuggestions.append(singleParsedSuggestion)
             }
             
-            textField.filterItems(parsedSuggestions)
+            DispatchQueue.main.async {
+                callback(parsedSuggestions)
+            }
         }
+
+    }
+
+    
+    @IBAction func homeAddressTextChanged(_ sender: SearchTextField) {
+        let parentViewController = parent as! TutorialPageViewController
+        parentViewController.setHomeLocation(homeAddress: "", homeLocID: "", homeName: "")
     }
     
+    @IBAction func workAddressTextChanged(_ sender: SearchTextField) {
+        let parentViewController = parent as! TutorialPageViewController
+        parentViewController.setWorkLocation(workAddress: "", workLocID: "", workName: "")
+    }
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         self.currentLocation = manager.location!.coordinate
         print("Current Location = \(self.currentLocation.latitude) \(self.currentLocation.longitude)")

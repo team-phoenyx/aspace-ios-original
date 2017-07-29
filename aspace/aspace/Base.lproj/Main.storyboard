@@ -308,12 +308,18 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                <connections>
+                                    <action selector="homeAddressTextChanged:" destination="IAL-r2-xCc" eventType="editingChanged" id="Kia-TN-sSU"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Work Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="75e-hL-6zP" customClass="SearchTextField" customModule="SearchTextField">
                                 <rect key="frame" x="48" y="382.5" width="279" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                <connections>
+                                    <action selector="workAddressTextChanged:" destination="IAL-r2-xCc" eventType="editingChanged" id="GLN-In-MCd"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -425,8 +431,19 @@
                             <constraint firstItem="o56-93-65h" firstAttribute="top" secondItem="hTc-AZ-pPb" secondAttribute="top" id="yBK-la-pG2"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="Nid-qH-TVO" id="zgg-sP-eqU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Vf-7L-dJV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="Nid-qH-TVO">
+                    <connections>
+                        <outlet property="delegate" destination="fKU-vt-jik" id="eu5-TJ-cam"/>
+                        <outlet property="searchContentsController" destination="fKU-vt-jik" id="C0i-zJ-aPM"/>
+                        <outlet property="searchResultsDataSource" destination="fKU-vt-jik" id="IlN-ZP-Yxd"/>
+                        <outlet property="searchResultsDelegate" destination="fKU-vt-jik" id="tD5-8t-9JI"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="1024.8" y="-405.24737631184411"/>
         </scene>
