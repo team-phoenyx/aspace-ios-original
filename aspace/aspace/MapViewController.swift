@@ -16,7 +16,8 @@ import Alamofire
 class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapViewDelegate {
     
     //CONSTANTS
-    let geocoderBaseURL: String = "https://api.mapbox.com/"
+    let geocoderBaseURL = "https://api.mapbox.com/"
+    let aspaceBaseURL = (UIApplication.shared.delegate as! AppDelegate).aspaceBaseURL
     
     //REALM
     var realmEncryptionKey: Data!
@@ -34,6 +35,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapView
     
     //MARKERS
     var destinationMarker: MGLPointAnnotation!
+    var parkingSpots: [ParkingSpot]!
+    var previousParkingSpots: [ParkingSpot]!
+    var redrawSpotIDs = [Int: Int]()
     
     //OUTLETS
     @IBOutlet weak var searchTextField: SearchTextField!
@@ -97,6 +101,137 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapView
                 }
             }
         }
+        
+        //Start spot refresh timer
+        var timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(self.updateSpots), userInfo: nil, repeats: true)
+    }
+    
+    func updateSpots() {
+        let ne = mapView.visibleCoordinateBounds.ne
+        let sw = mapView.visibleCoordinateBounds.sw
+        
+        let getVisibleSpotsParams: Parameters = [
+            "lower_lat": sw.latitude,
+            "lower_lon": sw.longitude,
+            "upper_lat": ne.latitude,
+            "upper_lon": ne.longitude
+        ]
+        
+        Alamofire.request(self.aspaceBaseURL + "spots/onscreen", method: .post, parameters: getVisibleSpotsParams, encoding: URLEncoding.httpBody).responseJSON { (response: DataResponse<Any>) in
+            
+            let closestSpotsRawResponse = response.map { json -> GetSpotsResponse in
+                let dictionary = json as? [[String: Any]]
+                return GetSpotsResponse(dictionary!)
+            }
+            
+            self.parkingSpots = closestSpotsRawResponse.value?.spots ?? []
+            
+            self.drawSpots()
+            
+            print("Total marker count: \(self.mapView.annotations?.count)")
+        }
+    }
+    
+    func drawSpots() {
+        var deltaParkingSpots = [ParkingSpot]()
+        var removedParkingSpots = [ParkingSpot]()
+        var nonDeltaParkingSpots = [ParkingSpot]()
+        redrawSpotIDs = [Int: Int]()
+        
+        
+        if (previousParkingSpots != nil && previousParkingSpots.count > 0) {
+            let redrawData = getDeltaParkingSpots()
+            
+            deltaParkingSpots = redrawData[0]
+            nonDeltaParkingSpots = redrawData[1]
+            removedParkingSpots = redrawData[2]
+        } else {
+            deltaParkingSpots = self.parkingSpots
+        }
+        
+        //Draw changed spots
+        for i in 0..<deltaParkingSpots.count {
+            let spot = deltaParkingSpots[i]
+            
+            //remove the previous marker if there is one
+            if (redrawSpotIDs[spot.spotID] != nil) {
+                mapView.removeAnnotation(previousParkingSpots[redrawSpotIDs[spot.spotID]!].marker)
+            }
+            
+            let marker = ParkingSpotPointAnnotation()
+            marker.coordinate = CLLocationCoordinate2D.init(latitude: spot.lat, longitude: spot.lon)
+            if (spot.statusTaken) {
+                marker.taken = true
+            }
+            mapView.addAnnotation(marker)
+            spot.addMarker(annotation: marker)
+            print("marker added to spot \(spot.spotID)")
+            deltaParkingSpots.remove(at: i)
+            deltaParkingSpots.insert(spot, at: i)
+        }
+        
+        for removeSpot in removedParkingSpots {
+            mapView.removeAnnotation(removeSpot.marker)
+        }
+        
+        previousParkingSpots = deltaParkingSpots + nonDeltaParkingSpots
+    }
+    
+    func getDeltaParkingSpots() -> [[ParkingSpot]] {
+        var deltas = [ParkingSpot]()
+        var nonDeltas = [ParkingSpot]()
+        var removes = [ParkingSpot]()
+        
+        var spotExists = false
+        
+        for checkSpot in self.parkingSpots {
+            spotExists = false
+            
+            for i in 0..<self.previousParkingSpots.count {
+                let previousCheckSpot = self.previousParkingSpots[i]
+                if checkSpot.spotID == previousCheckSpot.spotID {
+                    spotExists = true
+                    
+                    if (checkSpot.lat != previousCheckSpot.lat || checkSpot.lon != previousCheckSpot.lon || checkSpot.statusTaken != previousCheckSpot.statusTaken) {
+                        deltas.append(checkSpot)
+                        redrawSpotIDs[checkSpot.spotID] = i
+                    } else {
+                        nonDeltas.append(previousCheckSpot)
+                    }
+                    
+                    break
+                }
+            }
+            if (!spotExists) {
+                deltas.append(checkSpot)
+            }
+        }
+        
+        for i in 0..<self.previousParkingSpots.count {
+            let checkStillExistsSpot = self.previousParkingSpots[i]
+            
+            let oldSpotID = checkStillExistsSpot.spotID
+            var spotStillExists = false
+            
+            for newSpot in self.parkingSpots {
+                if (newSpot.spotID == oldSpotID) {
+                    spotStillExists = true
+                    break
+                }
+            }
+            
+            if (!spotStillExists) {
+                self.redrawSpotIDs[oldSpotID] = i
+                removes.append(checkStillExistsSpot)
+            }
+        }
+        
+        var redrawData = [[ParkingSpot]]()
+        
+        redrawData.insert(deltas, at: 0)
+        redrawData.insert(nonDeltas, at: 1)
+        redrawData.insert(removes, at: 2)
+        return redrawData
     }
     
     func markDestination(coordinates: CLLocationCoordinate2D, title: String) {
@@ -145,7 +280,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapView
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         self.currentLocation = manager.location!.coordinate
-        print("Current Location = \(self.currentLocation.latitude) \(self.currentLocation.longitude) @ \(currentHeading)")
         
         if !hasSetInitialMapLocation {
             snapLocationToUser(snapHeading: false)
@@ -179,6 +313,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapView
         print("Request URL: \(self.geocoderBaseURL)geocoding/v5/mapbox.places/\(newText).json?proximity=\(proximityString)&access_token=\(accessToken)")
         Alamofire.request(self.geocoderBaseURL + "geocoding/v5/mapbox.places/\(newText).json?proximity=\(proximityString)&access_token=\(accessToken)", method: .get).responseJSON { (response: DataResponse<Any>) in
             
+            response.result.ifFailure {
+                DispatchQueue.main.async {
+                    callback([])
+                }
+                return
+            }
+            
             let geocodeResponse = response.map { json -> GeocoderResponse in
                 let dictionary = json as? [String: Any]
                 return GeocoderResponse(dictionary!)
@@ -196,6 +337,44 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapView
             DispatchQueue.main.async {
                 callback(parsedSuggestions)
             }
+        }
+        
+    }
+    
+    func mapView(_ mapView: MGLMapView, viewFor annotation: MGLAnnotation) -> MGLAnnotationView? {
+        
+        if let castAnnotation = annotation as? ParkingSpotPointAnnotation {
+            if (castAnnotation.taken) {
+                let reuseIdentifier = "reusableTakenDotView"
+                var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier)
+                
+                if annotationView == nil {
+                    annotationView = MGLAnnotationView(reuseIdentifier: reuseIdentifier)
+                    annotationView?.frame = CGRect(x: 0, y: 0, width: 16, height: 16)
+                    annotationView?.layer.cornerRadius = (annotationView?.frame.size.width)! / 2
+                    annotationView?.layer.borderWidth = 1.0
+                    annotationView?.layer.borderColor = UIColor.white.cgColor
+                    annotationView!.backgroundColor = UIColor(red: 1, green: 0.23, blue: 0.19, alpha: 1.0)
+                }
+                
+                return annotationView
+            } else {
+                let reuseIdentifier = "reusableOpenDotView"
+                var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier)
+                
+                if annotationView == nil {
+                    annotationView = MGLAnnotationView(reuseIdentifier: reuseIdentifier)
+                    annotationView?.frame = CGRect(x: 0, y: 0, width: 16, height: 16)
+                    annotationView?.layer.cornerRadius = (annotationView?.frame.size.width)! / 2
+                    annotationView?.layer.borderWidth = 1.0
+                    annotationView?.layer.borderColor = UIColor.white.cgColor
+                    annotationView!.backgroundColor = UIColor(red: 0.3, green: 0.85, blue: 0.39, alpha: 1.0)
+                }
+                
+                return annotationView
+            }
+        } else {
+            return nil
         }
         
     }

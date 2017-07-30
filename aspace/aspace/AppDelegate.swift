@@ -14,7 +14,7 @@ import Alamofire
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    let aspaceBaseURL = "http://165.227.7.211:3000/api/"
+    let aspaceBaseURL = "http://138.68.241.101:3000/api/"
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.

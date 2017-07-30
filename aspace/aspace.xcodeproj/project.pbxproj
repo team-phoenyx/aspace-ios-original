@@ -18,6 +18,9 @@
 		E50B936F1F26C4FE00595101 /* TutorialCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50B936E1F26C4FE00595101 /* TutorialCarViewController.swift */; };
 		E50B93711F26C50A00595101 /* TutorialLocationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50B93701F26C50A00595101 /* TutorialLocationsViewController.swift */; };
 		E50B93731F26C51600595101 /* TutorialWelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50B93721F26C51600595101 /* TutorialWelcomeViewController.swift */; };
+		E59F24FF1F2E60FC001C1F6A /* GetSpotsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59F24FE1F2E60FC001C1F6A /* GetSpotsResponse.swift */; };
+		E59F25011F2E618C001C1F6A /* ParkingSpot.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59F25001F2E618C001C1F6A /* ParkingSpot.swift */; };
+		E59F25041F2E746A001C1F6A /* ParkingSpotPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59F25031F2E746A001C1F6A /* ParkingSpotPointAnnotation.swift */; };
 		E5B5EF671F24357200802854 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B5EF661F24357200802854 /* AppDelegate.swift */; };
 		E5B5EF691F24357200802854 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B5EF681F24357200802854 /* LoginViewController.swift */; };
 		E5B5EF6C1F24357200802854 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5B5EF6A1F24357200802854 /* Main.storyboard */; };
@@ -41,6 +44,9 @@
 		E50B936E1F26C4FE00595101 /* TutorialCarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialCarViewController.swift; sourceTree = "<group>"; };
 		E50B93701F26C50A00595101 /* TutorialLocationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialLocationsViewController.swift; sourceTree = "<group>"; };
 		E50B93721F26C51600595101 /* TutorialWelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialWelcomeViewController.swift; sourceTree = "<group>"; };
+		E59F24FE1F2E60FC001C1F6A /* GetSpotsResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetSpotsResponse.swift; sourceTree = "<group>"; };
+		E59F25001F2E618C001C1F6A /* ParkingSpot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkingSpot.swift; sourceTree = "<group>"; };
+		E59F25031F2E746A001C1F6A /* ParkingSpotPointAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkingSpotPointAnnotation.swift; sourceTree = "<group>"; };
 		E5B5EF631F24357200802854 /* aspace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = aspace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5B5EF661F24357200802854 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E5B5EF681F24357200802854 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -89,6 +95,8 @@
 				E50B935C1F266FC500595101 /* VerifyPinResponse.swift */,
 				E5B6A1481F291ED900250F4E /* GeocoderResponse.swift */,
 				E5B6A14A1F29236600250F4E /* LocationSuggestion.swift */,
+				E59F24FE1F2E60FC001C1F6A /* GetSpotsResponse.swift */,
+				E59F25001F2E618C001C1F6A /* ParkingSpot.swift */,
 			);
 			name = alamofireModels;
 			sourceTree = "<group>";
@@ -124,6 +132,16 @@
 			name = tutorialViewControllers;
 			sourceTree = "<group>";
 		};
+		E59F25021F2E7448001C1F6A /* models */ = {
+			isa = PBXGroup;
+			children = (
+				E50B935E1F26786000595101 /* alamofireModels */,
+				E50B935F1F26788300595101 /* realmModels */,
+				E59F25031F2E746A001C1F6A /* ParkingSpotPointAnnotation.swift */,
+			);
+			name = models;
+			sourceTree = "<group>";
+		};
 		E5B5EF5A1F24357200802854 = {
 			isa = PBXGroup;
 			children = (
@@ -145,9 +163,8 @@
 		E5B5EF651F24357200802854 /* aspace */ = {
 			isa = PBXGroup;
 			children = (
+				E59F25021F2E7448001C1F6A /* models */,
 				E50B93681F26C3C300595101 /* viewControllers */,
-				E50B935F1F26788300595101 /* realmModels */,
-				E50B935E1F26786000595101 /* alamofireModels */,
 				E5B5EF661F24357200802854 /* AppDelegate.swift */,
 				E5E3CB7D1F252C94002BBAB0 /* aspace-bridging-header.h */,
 				E5B5EF6A1F24357200802854 /* Main.storyboard */,
@@ -284,17 +301,20 @@
 			files = (
 				E50B93631F26792D00595101 /* UserCredential.swift in Sources */,
 				E50B93731F26C51600595101 /* TutorialWelcomeViewController.swift in Sources */,
+				E59F24FF1F2E60FC001C1F6A /* GetSpotsResponse.swift in Sources */,
 				E5B5EF691F24357200802854 /* LoginViewController.swift in Sources */,
 				E50B93651F26AAD500595101 /* TutorialPageViewController.swift in Sources */,
 				E50B935D1F266FC500595101 /* VerifyPinResponse.swift in Sources */,
 				E5B5EF671F24357200802854 /* AppDelegate.swift in Sources */,
 				E50B935B1F26669F00595101 /* ResponseCode.swift in Sources */,
 				E50B93711F26C50A00595101 /* TutorialLocationsViewController.swift in Sources */,
+				E59F25041F2E746A001C1F6A /* ParkingSpotPointAnnotation.swift in Sources */,
 				E5B6A1491F291ED900250F4E /* GeocoderResponse.swift in Sources */,
 				E50B936D1F26C4CD00595101 /* TutorialNameViewController.swift in Sources */,
 				E50B936F1F26C4FE00595101 /* TutorialCarViewController.swift in Sources */,
 				E50B93671F26BD0500595101 /* MapViewController.swift in Sources */,
 				E5B6A14B1F29236600250F4E /* LocationSuggestion.swift in Sources */,
+				E59F25011F2E618C001C1F6A /* ParkingSpot.swift in Sources */,
 				E50B936B1F26C4BB00595101 /* TutorialStartViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
