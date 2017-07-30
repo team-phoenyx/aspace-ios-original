@@ -11,14 +11,17 @@ import SearchTextField
 import CoreLocation
 import Mapbox
 import QuartzCore
+import Alamofire
 
 class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapViewDelegate {
+    
+    let geocoderBaseURL: String = "https://api.mapbox.com/"
     
     var realmEncryptionKey: Data!
     var hasSetInitialMapLocation = false
     
-    @IBOutlet weak var snapLocationButton: UIButton!
-    
+    var currentSuggestions = [LocationSuggestion]()
+
     let locationManager = CLLocationManager()
     var currentLocation: CLLocationCoordinate2D!
     var currentHeading: CLLocationDirection!
@@ -26,6 +29,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapView
     @IBOutlet weak var searchTextField: SearchTextField!
     @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var mapView: MGLMapView!
+    @IBOutlet weak var snapLocationButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +52,39 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapView
         //INIT MAPVIEW
         mapView.delegate = self
         
-        //searchTextField.filterStrings(["test","test2","test3"])
+        //INIT SEARCHTEXTFIELD
+        searchTextField.theme.font = UIFont.systemFont(ofSize: 14)
+        
+        searchTextField.highlightAttributes = [NSFontAttributeName:UIFont.boldSystemFont(ofSize: 14)]
+        
+        searchTextField.theme.cellHeight = 40
+        
+        searchTextField.theme.bgColor = UIColor (red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        
+        searchTextField.itemSelectionHandler = { item, itemPosition in
+            self.searchTextField.text = item.title
+            
+            let suggestion = self.currentSuggestions[itemPosition]
+            let searchedLocation = suggestion.coordinates
+            let size = suggestion.bboxPythagoreanSize
+            
+            self.mapView.setCamera(MGLMapCamera.init(lookingAtCenter: searchedLocation, fromDistance: size, pitch: 0.0, heading: 0), animated: true)
+            self.searchTextField.resignFirstResponder()
+        }
+        
+        searchTextField.userStoppedTypingHandler = {
+            if let query = self.searchTextField.text {
+                if query.characters.count > 2 {
+                    self.searchTextField.showLoadingIndicator()
+                    
+                    self.getSuggestionsBackground(query) { suggestions in
+                        self.searchTextField.filterItems(suggestions)
+                        
+                        self.searchTextField.stopLoadingIndicator()
+                    }
+                }
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -99,15 +135,46 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapView
     }
     
     func snapLocationToUser(snapHeading: Bool) {
-        var pitch = 0.0
+        var heading = 0.0
         if snapHeading {
-            pitch = currentHeading ?? 0.0
+            heading = currentHeading ?? 0.0
         }
-        mapView.setCamera(MGLMapCamera.init(lookingAtCenter: currentLocation, fromDistance: 1200.0, pitch: CGFloat(pitch), heading: 0), animated: true)
+        mapView.setCamera(MGLMapCamera.init(lookingAtCenter: currentLocation, fromDistance: 1200.0, pitch: 0, heading: heading), animated: true)
     }
+    
     
     @IBAction func snapLocationButtonPressed(_ sender: UIButton) {
         snapLocationToUser(snapHeading: true)
+    }
+    
+    func getSuggestionsBackground(_ query: String, callback: @escaping ((_ results: [SearchTextFieldItem]) -> Void)) {
+        var newText = query
+        newText = newText.replacingOccurrences(of: " ", with: "%20")
+        let proximityString = "\(self.currentLocation.longitude),\(self.currentLocation.latitude)"
+        let accessToken = "pk.eyJ1IjoicGFyY2FyZSIsImEiOiJjajVpdHpsN2wxa3dxMzNwZ3dsNzFsNjAxIn0.xROQiNWCYJI-3EvHd0-NzQ"
+        
+        print("Request URL: \(self.geocoderBaseURL)geocoding/v5/mapbox.places/\(newText).json?proximity=\(proximityString)&access_token=\(accessToken)")
+        Alamofire.request(self.geocoderBaseURL + "geocoding/v5/mapbox.places/\(newText).json?proximity=\(proximityString)&access_token=\(accessToken)", method: .get).responseJSON { (response: DataResponse<Any>) in
+            
+            let geocodeResponse = response.map { json -> GeocoderResponse in
+                let dictionary = json as? [String: Any]
+                return GeocoderResponse(dictionary!)
+            }
+            
+            self.currentSuggestions.removeAll()
+            self.currentSuggestions = (geocodeResponse.value?.locationSuggestions)!
+            
+            var parsedSuggestions = [SearchTextFieldItem]()
+            for suggestion in self.currentSuggestions {
+                let singleParsedSuggestion = SearchTextFieldItem(title: suggestion.name, subtitle: suggestion.address)
+                parsedSuggestions.append(singleParsedSuggestion)
+            }
+            
+            DispatchQueue.main.async {
+                callback(parsedSuggestions)
+            }
+        }
+        
     }
 
     /*
