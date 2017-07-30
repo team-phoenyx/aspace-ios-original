@@ -15,11 +15,13 @@ import QuartzCore
 class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapViewDelegate {
     
     var realmEncryptionKey: Data!
+    var hasSetInitialMapLocation = false
     
     @IBOutlet weak var snapLocationButton: UIButton!
     
     let locationManager = CLLocationManager()
     var currentLocation: CLLocationCoordinate2D!
+    var currentHeading: CLLocationDirection!
     
     @IBOutlet weak var searchTextField: SearchTextField!
     @IBOutlet weak var navigationBar: UINavigationBar!
@@ -45,8 +47,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapView
         
         //INIT MAPVIEW
         mapView.delegate = self
-        
-        
         
         //searchTextField.filterStrings(["test","test2","test3"])
     }
@@ -86,9 +86,29 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapView
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         self.currentLocation = manager.location!.coordinate
-        print("Current Location = \(self.currentLocation.latitude) \(self.currentLocation.longitude)")
+        print("Current Location = \(self.currentLocation.latitude) \(self.currentLocation.longitude) @ \(currentHeading)")
+        
+        if !hasSetInitialMapLocation {
+            snapLocationToUser(snapHeading: false)
+        }
+        hasSetInitialMapLocation = true
     }
     
+    func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
+        currentHeading = newHeading.trueHeading
+    }
+    
+    func snapLocationToUser(snapHeading: Bool) {
+        var pitch = 0.0
+        if snapHeading {
+            pitch = currentHeading ?? 0.0
+        }
+        mapView.setCamera(MGLMapCamera.init(lookingAtCenter: currentLocation, fromDistance: 1200.0, pitch: CGFloat(pitch), heading: 0), animated: true)
+    }
+    
+    @IBAction func snapLocationButtonPressed(_ sender: UIButton) {
+        snapLocationToUser(snapHeading: true)
+    }
 
     /*
     // MARK: - Navigation
