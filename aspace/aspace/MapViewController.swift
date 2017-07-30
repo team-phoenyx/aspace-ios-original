@@ -15,17 +15,27 @@ import Alamofire
 
 class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapViewDelegate {
     
+    //CONSTANTS
     let geocoderBaseURL: String = "https://api.mapbox.com/"
     
+    //REALM
     var realmEncryptionKey: Data!
+    
+    //BOOL FLAGS
     var hasSetInitialMapLocation = false
     
+    //SUGGESTIONS
     var currentSuggestions = [LocationSuggestion]()
 
+    //LOCATION
     let locationManager = CLLocationManager()
     var currentLocation: CLLocationCoordinate2D!
     var currentHeading: CLLocationDirection!
     
+    //MARKERS
+    var destinationMarker: MGLPointAnnotation!
+    
+    //OUTLETS
     @IBOutlet weak var searchTextField: SearchTextField!
     @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var mapView: MGLMapView!
@@ -70,6 +80,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapView
             
             self.mapView.setCamera(MGLMapCamera.init(lookingAtCenter: searchedLocation, fromDistance: size, pitch: 0.0, heading: 0), animated: true)
             self.searchTextField.resignFirstResponder()
+            
+            self.markDestination(coordinates: searchedLocation, title: item.title) //TODO use subtitles to show availability of parking spaces
         }
         
         searchTextField.userStoppedTypingHandler = {
@@ -86,6 +98,17 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapView
             }
         }
     }
+    
+    func markDestination(coordinates: CLLocationCoordinate2D, title: String) {
+        if (destinationMarker != nil) {
+            mapView.removeAnnotation(destinationMarker)
+        }
+        
+        destinationMarker = MGLPointAnnotation()
+        destinationMarker.coordinate = coordinates
+        destinationMarker.title = title
+        mapView.addAnnotation(destinationMarker)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -96,7 +119,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapView
         let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .regular))
         visualEffectView.frame = snapLocationButton.bounds
         visualEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        visualEffectView.isUserInteractionEnabled = false //This allows touches to forward to the button.
+        visualEffectView.isUserInteractionEnabled = false
         snapLocationButton.isOpaque = false
         snapLocationButton.insertSubview(visualEffectView, at: 0)
         snapLocationButton.bringSubview(toFront: snapLocationButton.imageView!)
