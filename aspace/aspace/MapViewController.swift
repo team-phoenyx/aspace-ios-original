@@ -16,6 +16,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapView
     
     var realmEncryptionKey: Data!
     
+    @IBOutlet weak var snapLocationButton: UIButton!
+    
     let locationManager = CLLocationManager()
     var currentLocation: CLLocationCoordinate2D!
     
@@ -38,6 +40,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapView
         //INIT NAVBAR
         self.setupNavigationBar()
         
+        //INIT BUTTON
+        self.setupButton()
+        
         //INIT MAPVIEW
         mapView.delegate = self
         
@@ -49,6 +54,18 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapView
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func setupButton() {
+        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .regular))
+        visualEffectView.frame = snapLocationButton.bounds
+        visualEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        visualEffectView.isUserInteractionEnabled = false //This allows touches to forward to the button.
+        snapLocationButton.isOpaque = false
+        snapLocationButton.insertSubview(visualEffectView, at: 0)
+        snapLocationButton.bringSubview(toFront: snapLocationButton.imageView!)
+        snapLocationButton.layer.cornerRadius = 8
+        snapLocationButton.clipsToBounds = true
     }
     
     func setupNavigationBar() {

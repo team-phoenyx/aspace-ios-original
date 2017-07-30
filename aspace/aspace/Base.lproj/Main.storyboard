@@ -436,14 +436,25 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
+                                                <barButtonItem key="rightBarButtonItem" title="Profile" id="arA-cs-mMB"/>
                                             </navigationItem>
                                         </items>
                                     </navigationBar>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Ug-OI-jbH">
+                                        <rect key="frame" x="317" y="80" width="42" height="42"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="42" id="1GX-rX-7XF"/>
+                                            <constraint firstAttribute="width" constant="42" id="qH0-Ku-gnj"/>
+                                        </constraints>
+                                        <state key="normal" image="locationIcon"/>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="S7l-XW-7L9" firstAttribute="leading" secondItem="o56-93-65h" secondAttribute="leading" id="JvW-Fe-WQ2"/>
+                                    <constraint firstItem="4Ug-OI-jbH" firstAttribute="top" secondItem="S7l-XW-7L9" secondAttribute="bottom" constant="16" id="Q7J-da-Fnc"/>
                                     <constraint firstAttribute="trailing" secondItem="S7l-XW-7L9" secondAttribute="trailing" id="RSH-4J-IdV"/>
+                                    <constraint firstAttribute="trailing" secondItem="4Ug-OI-jbH" secondAttribute="trailing" constant="16" id="uF8-jh-UT4"/>
                                     <constraint firstItem="S7l-XW-7L9" firstAttribute="top" secondItem="o56-93-65h" secondAttribute="top" id="yCi-hT-rkQ"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
@@ -464,6 +475,7 @@
                         <outlet property="navigationBar" destination="S7l-XW-7L9" id="kEK-Yv-VeA"/>
                         <outlet property="searchDisplayController" destination="Nid-qH-TVO" id="zgg-sP-eqU"/>
                         <outlet property="searchTextField" destination="ZOl-Lo-an6" id="NGp-c9-Zne"/>
+                        <outlet property="snapLocationButton" destination="4Ug-OI-jbH" id="x4b-3V-S4j"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Vf-7L-dJV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -479,6 +491,9 @@
             <point key="canvasLocation" x="1024.8" y="-405.24737631184411"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="locationIcon" width="25" height="25"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="eV1-2y-p5e"/>
     </inferredMetricsTieBreakers>
