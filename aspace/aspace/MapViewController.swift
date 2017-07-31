@@ -127,8 +127,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapView
             self.parkingSpots = closestSpotsRawResponse.value?.spots ?? []
             
             self.drawSpots()
-            
-            print("Total marker count: \(self.mapView.annotations?.count)")
         }
     }
     

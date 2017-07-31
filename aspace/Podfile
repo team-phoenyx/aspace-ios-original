@@ -4,6 +4,7 @@ use_frameworks!
 platform :ios, '10.3'
 
 target "aspace" do
+    pod 'Firebase/Core'
     pod 'RealmSwift'
     pod 'Alamofire', '~> 4.4'
     pod 'Mapbox-iOS-SDK', '~> 3.6'

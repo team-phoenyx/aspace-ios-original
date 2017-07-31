@@ -9,6 +9,7 @@
 import UIKit
 import RealmSwift
 import Alamofire
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,14 +20,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        FirebaseApp.configure()
+        
         self.window = UIWindow(frame: UIScreen.main.bounds)
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let loginViewController: LoginViewController = mainStoryboard.instantiateViewController(withIdentifier: "LoginController") as! LoginViewController
         let mapViewController: MapViewController = mainStoryboard.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
         
-        self.window?.rootViewController = mapViewController
-        self.window?.makeKeyAndVisible()
-        /*
         let storage = UserDefaults.standard
         
         guard let realmEncryptionKey = storage.object(forKey: "realm_encryption_key") as? Data else {
@@ -94,7 +94,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } catch let error as NSError {
             fatalError("Error opening realm: \(error)")
         }
-        */
+        
         return true
     }
 
