@@ -136,6 +136,14 @@
 			name = tutorialViewControllers;
 			sourceTree = "<group>";
 		};
+		E539C7601F30E8B700175AA2 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				E539C75D1F30E70C00175AA2 /* ProfileVIew.swift */,
+			);
+			name = views;
+			sourceTree = "<group>";
+		};
 		E59F25021F2E7448001C1F6A /* models */ = {
 			isa = PBXGroup;
 			children = (
@@ -167,6 +175,7 @@
 		E5B5EF651F24357200802854 /* aspace */ = {
 			isa = PBXGroup;
 			children = (
+				E539C7601F30E8B700175AA2 /* views */,
 				E59F25021F2E7448001C1F6A /* models */,
 				E50B93681F26C3C300595101 /* viewControllers */,
 				E5B5EF661F24357200802854 /* AppDelegate.swift */,
@@ -176,7 +185,6 @@
 				E5B5EF6F1F24357200802854 /* LaunchScreen.storyboard */,
 				E5B5EF721F24357200802854 /* Info.plist */,
 				E59F25051F2ECBA9001C1F6A /* GoogleService-Info.plist */,
-				E539C75D1F30E70C00175AA2 /* ProfileVIew.swift */,
 			);
 			path = aspace;
 			sourceTree = "<group>";

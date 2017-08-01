@@ -347,7 +347,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapView
         
         let alertVC = PMAlertController.init(title: "A Title", description: "My Description", image: nil, style: .alert)
         
+        let profileView = ProfileView(frame: alertVC.view.bounds, name: "Terrance", locations: [])
         
+        alertVC.headerView = profileView
         
         alertVC.addAction(PMAlertAction(title: "Close", style: .cancel, action: { () -> Void in
             print("Capture action Close")
