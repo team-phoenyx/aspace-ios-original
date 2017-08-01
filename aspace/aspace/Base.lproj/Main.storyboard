@@ -436,7 +436,11 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                                 </textField>
-                                                <barButtonItem key="rightBarButtonItem" title="Profile" id="arA-cs-mMB"/>
+                                                <barButtonItem key="rightBarButtonItem" title="Profile" id="arA-cs-mMB">
+                                                    <connections>
+                                                        <action selector="profileButtonPressed:" destination="fKU-vt-jik" id="Zkq-4N-Xsy"/>
+                                                    </connections>
+                                                </barButtonItem>
                                             </navigationItem>
                                         </items>
                                     </navigationBar>

@@ -12,6 +12,8 @@ import CoreLocation
 import Mapbox
 import QuartzCore
 import Alamofire
+import PMAlertController
+import RealmSwift
 
 class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapViewDelegate {
     
@@ -19,7 +21,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapView
     let geocoderBaseURL = "https://api.mapbox.com/"
     let aspaceBaseURL = (UIApplication.shared.delegate as! AppDelegate).aspaceBaseURL
     
-    //REALM
+    //USER IDENTIFIERS
+    var userID: String!
+    var accessToken: String!
+    var phoneNumber: String!
     var realmEncryptionKey: Data!
     
     //BOOL FLAGS
@@ -44,6 +49,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapView
     @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var mapView: MGLMapView!
     @IBOutlet weak var snapLocationButton: UIButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -101,6 +107,25 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapView
                 }
             }
         }
+        
+        //INIT USER IDENTIFIERS
+        let config = Realm.Configuration(encryptionKey: realmEncryptionKey)
+        
+        do {
+            let realm = try Realm(configuration: config)
+            
+            guard let credentials = realm.objects(UserCredential.self).first else {
+                
+                return
+            }
+            
+            self.userID = credentials.userID
+            self.accessToken = credentials.accessToken
+            self.phoneNumber = credentials.phoneNumber
+        } catch let error as NSError {
+            fatalError("Error opening realm: \(error)")
+        }
+
         
         //Start spot refresh timer
         var timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(self.updateSpots), userInfo: nil, repeats: true)
@@ -297,6 +322,43 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapView
         mapView.setCamera(MGLMapCamera.init(lookingAtCenter: currentLocation, fromDistance: 1200.0, pitch: 0, heading: heading), animated: true)
     }
     
+    @IBAction func profileButtonPressed(_ sender: UIBarButtonItem) {
+        let getProfileParams: Parameters = [
+            "user_id": self.userID,
+            "access_token": self.accessToken,
+            "phone": self.phoneNumber
+        ]
+        
+        /*
+        Alamofire.request(self.aspaceBaseURL + "users/profile/get", method: .post, parameters: getProfileParams, encoding: URLEncoding.httpBody).responseJSON { (response: DataResponse<Any>) in
+            
+            
+            let closestSpotsRawResponse = response.map { json -> GetSpotsResponse in
+                let dictionary = json as? [[String: Any]]
+                return GetSpotsResponse(dictionary!)
+            }
+            
+            self.parkingSpots = closestSpotsRawResponse.value?.spots ?? []
+            
+            self.drawSpots()
+        }
+        */
+        
+        
+        let alertVC = PMAlertController.init(title: "A Title", description: "My Description", image: nil, style: .alert)
+        
+        
+        
+        alertVC.addAction(PMAlertAction(title: "Close", style: .cancel, action: { () -> Void in
+            print("Capture action Close")
+        }))
+        
+        alertVC.addAction(PMAlertAction(title: "Settings", style: .default, action: { () in
+            print("Capture action Settings")
+        }))
+        
+        self.present(alertVC, animated: true, completion: nil)
+    }
     
     @IBAction func snapLocationButtonPressed(_ sender: UIButton) {
         snapLocationToUser(snapHeading: true)

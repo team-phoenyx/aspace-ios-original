@@ -23,6 +23,7 @@ PODS:
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
   - PMAlertController (2.1.2)
+  - PureLayout (3.0.2)
   - Realm (2.8.3):
     - Realm/Headers (= 2.8.3)
   - Realm/Headers (2.8.3)
@@ -36,6 +37,7 @@ DEPENDENCIES:
   - LGButton
   - Mapbox-iOS-SDK (~> 3.6)
   - PMAlertController
+  - PureLayout
   - RealmSwift
   - SearchTextField
 
@@ -50,10 +52,11 @@ SPEC CHECKSUMS:
   Mapbox-iOS-SDK: c911b1875a00f12bb74253b763ac483425bd4225
   nanopb: 22bc080fa3955e2116b6ff3ee6c2cb3c15ab97cb
   PMAlertController: 0fbcc3d1cee86ee0bd85f693ca85f6388e504ec8
+  PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
   Realm: 3601ef091c8c499a31101d8563b991e75546cdce
   RealmSwift: 8183818515471b01a99abdd2970f8e4fd52b6f4a
   SearchTextField: fb85b5c0650e674d10042f807d350f2d59c70b0d
 
-PODFILE CHECKSUM: 7926bd8c9940c74cdef7c55023ac2b4aeb475ea4
+PODFILE CHECKSUM: 7e5978193a82d87a6f50a507751d9a0377231aee
 
 COCOAPODS: 1.2.1
