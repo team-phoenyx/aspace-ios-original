@@ -1,1 +1,1 @@
-aspace - iOS
+iOS application by aspace, Inc.
