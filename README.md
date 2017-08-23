@@ -1,1 +1,1 @@
-iOS application by aspace, Inc.
+Copyright © 2017 Terrance Li

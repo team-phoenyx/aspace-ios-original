@@ -1,9 +1,8 @@
 //
 //  AppDelegate.swift
-//  aspace
 //
 //  Created by Terrance Li on 7/22/17.
-//  Copyright © 2017 aspace. All rights reserved.
+//  Copyright © 2017 Terrance Li. All rights reserved.
 //
 
 import UIKit
