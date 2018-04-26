@@ -4,4 +4,4 @@ Not licensed for use by aspace, Inc. or any other parties. To reiterate, do **NO
 
 **This repository is for viewing purposes only.**
 
-Copyright © 2017 Terrance Li
+Copyright © 2017 Terrance Li. All rights reserved.
